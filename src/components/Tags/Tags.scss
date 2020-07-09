@@ -1,0 +1,16 @@
+$padding-label: 8px;
+$border-radius-label: 20px;
+
+.label {
+  color: white;
+  .success {
+    background-color: #4CAF50;
+    padding: $padding-label;
+    border-radius: $border-radius-label;
+  }
+  .failed {
+    background-color: #f44336;
+    padding: $padding-label;
+    border-radius: $border-radius-label;
+  }
+}

@@ -1,0 +1,15 @@
+.label {
+  color: white;
+}
+.label .success {
+  background-color: #4CAF50;
+  padding: 8px;
+  border-radius: 20px;
+}
+.label .failed {
+  background-color: #f44336;
+  padding: 8px;
+  border-radius: 20px;
+}
+
+/*# sourceMappingURL=Reasons.css.map */
