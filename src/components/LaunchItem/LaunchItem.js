@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import moment from 'moment';
 import SuccessTag from "../Tags/SuccessTag";
 import FailedTag from "../Tags/FailedTag";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {validURL} from "../../helpers/helperFunctions"
+import AddToFavoriteButton from "./AddToFavoriteButton";
+import RemoveFromFavoriteButton from "./RemoveFromFavoriteButton";
 
 
-const LaunchItem = ({launch}) => {
+const LaunchItem = ({launch, favoriteLaunchesList, setFavoriteLaunchesList, launchesList, setLaunchesList}) => {
     // moment format date taken from- https://stackoverflow.com/questions/15993913/format-date-with-moment-js
     const launchStartDate = moment(launch.windowstart).format("dddd, MMMM Do YYYY, h:mm:ss a");
     const launchEndDate = moment(launch.windowend).format("dddd, MMMM Do YYYY, h:mm:ss a");
@@ -15,26 +17,36 @@ const LaunchItem = ({launch}) => {
     const [rocketImage, setRocketImage] = useState(null);
     const [rocketImageSize, setRocketImageSize] = useState(null);
 
-    // const toggleChecked = useCallback(id => {
-    //     setLaunchesList(launchesList.map((launch) => ({
-    //         ...launch,
-    //         checked: launch.id === id ? !launch.checked : launch.checked
-    //     })));
-    // }, [setLaunchesList, launchesList]);
+    useEffect(() => {
+        setLaunchesList(launchesList);
+        setFavoriteLaunchesList(favoriteLaunchesList);
+    }, [launchesList, favoriteLaunchesList])
 
     const apiLaunchURL = `https://launchlibrary.net/1.4/launch/${launch.id}`;
     useEffect(() => {
-        axios.get(apiLaunchURL)
-            .then(response => {
-                let tempLaunch = response.data.launches[0];
-                setRocketImage(tempLaunch.rocket.imageURL);
-                setRocketImageSize(tempLaunch.rocket.imageSizes[0]);
-            })
-            .catch(error => {
-                console.log(error);
+        function fetchLaunch() {
+            axios.get(apiLaunchURL)
+                .then(response => {
+                    let tempLaunch = response.data.launches[0];
+                    setRocketImage(tempLaunch.rocket.imageURL);
+                    setRocketImageSize(tempLaunch.rocket.imageSizes[0]);
+                })
+                .catch(error => {
+                    console.log(error);
 
-            });
+                });
+        }
+        fetchLaunch()
     }, [apiLaunchURL]);
+
+    const isInFavoriteLaunchesList = (launchId) => {
+        for (let i = 0 ; i < favoriteLaunchesList.length ; i++){
+            if (favoriteLaunchesList[i] === launchId){
+                return true;
+            }
+        }
+        return false;
+    };
 
     return (
         <div className="container-per-launch">
@@ -64,11 +76,19 @@ const LaunchItem = ({launch}) => {
                 }
             </div>
             <div className="button-container">
-                {/*!launch.checked ?
-                    <AddToFavoriteButton />
+                { isInFavoriteLaunchesList(launch.id) ?
+                    <RemoveFromFavoriteButton launch={launch}
+                                              favoriteLaunchesList={favoriteLaunchesList}
+                                              setFavoriteLaunchesList={setFavoriteLaunchesList}
+                                              launchesList={launchesList}
+                                              setLaunchesList={setLaunchesList}/>
                     :
-                    <RemoveFromFavoriteButton />
-                */}
+                    <AddToFavoriteButton launch={launch}
+                                         favoriteLaunchesList={favoriteLaunchesList}
+                                         setFavoriteLaunchesList={setFavoriteLaunchesList}
+                                         launchesList={launchesList}
+                                         setLaunchesList={setLaunchesList} />
+                }
             </div>
         </div>
     );

@@ -1,12 +1,13 @@
 import React from 'react';
 import Main from "./components/Main/Main";
 import { BrowserRouter } from "react-router-dom";
+import './App.scss';
 
 const App = () => {
     return (
-        <BrowserRouter>
+        <div className="App">
             <Main />
-        </BrowserRouter>
+        </div>
     );
 };
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import Loading from "../Loading/Loading";
 
-const NoLaunchesToShow = ({showLaunchesListError}) => {
+const NoLaunchesToShow = ({error}) => {
     return (
         <div className="no-launches-content">
-        {showLaunchesListError ?
-                showLaunchesListError
+        {error ?
+                "No launches to show..."
                 : <Loading />}
         </div>
     );
