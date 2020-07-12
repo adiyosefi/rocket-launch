@@ -1,0 +1,27 @@
+@import "../rocket-launch/utilities/variables";
+
+.remove-from-favorites-button , .add-to-favorites-button {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  font-family: inherit;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+.remove-from-favorites-button {
+  background-color: $remove-color;
+  &:hover{
+    background-color: $remove-color-hover;
+  }
+}
+.add-to-favorites-button {
+  background-color: $add-color;
+  &:hover{
+    background-color: $add-color-hover;
+  }
+}

@@ -4,7 +4,7 @@ const PadItem = ({name, longitude, latitude}) => {
     let url = `https://www.google.com/maps/embed/v1/place?q=${latitude}+${longitude}&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8`
 
     return (
-        <div>
+        <div className="pad-container">
             <div className="pad-name">
                 {name}
             </div>

@@ -5,11 +5,11 @@ import Loading from "../Loading/Loading";
 import {LaunchesContext} from "../../context/launches";
 import axios from "axios";
 import {useLocalStorage} from "../../hooks/useLocalStorage";
+import './LaunchesList.scss'
 
 
 const LaunchesToShow = ({launchesList, setLaunchesList, loading, lastLaunchElementRef,
                             favoriteLaunchesList, setFavoriteLaunchesList}) => {
-
 
     console.log("favoriteLaunchesList", favoriteLaunchesList);
 
@@ -19,9 +19,7 @@ const LaunchesToShow = ({launchesList, setLaunchesList, loading, lastLaunchEleme
                 <li ref={lastLaunchElementRef} key={launch.id} className="launch-item">
                     <LaunchItem launch={launch}
                                 favoriteLaunchesList={favoriteLaunchesList}
-                                setFavoriteLaunchesList={setFavoriteLaunchesList}
-                                launchesList={launchesList}
-                                setLaunchesList={setLaunchesList} />
+                                setFavoriteLaunchesList={setFavoriteLaunchesList} />
                 </li>
             );
         } else {
@@ -29,9 +27,7 @@ const LaunchesToShow = ({launchesList, setLaunchesList, loading, lastLaunchEleme
                 <li key={launch.id} className="launch-item">
                     <LaunchItem launch={launch}
                                 favoriteLaunchesList={favoriteLaunchesList}
-                                setFavoriteLaunchesList={setFavoriteLaunchesList}
-                                launchesList={launchesList}
-                                setLaunchesList={setLaunchesList} />
+                                setFavoriteLaunchesList={setFavoriteLaunchesList} />
                 </li>
             );
         }
@@ -39,12 +35,10 @@ const LaunchesToShow = ({launchesList, setLaunchesList, loading, lastLaunchEleme
 
     return (
         <div className="launches-list-container">
-            {/*<form onSubmit={e => handleSubmitFavLaunches(e)}>*/}
-                <ul className="launches-list">
-                    {showLaunchesList}
-                    {loading && <Loading />}
-                </ul>
-            {/*</form>*/}
+            <ul className="launches-list">
+                {showLaunchesList}
+                {loading && <Loading />}
+            </ul>
         </div>
     );
 };

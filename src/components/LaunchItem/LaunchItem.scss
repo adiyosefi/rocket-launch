@@ -1,0 +1,54 @@
+@import "../rocket-launch/utilities/variables";
+
+.container-per-launch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(74, 79, 92, 0.29);
+  border-radius: 10px;
+  .launch-rocket-image-container {
+    img {
+      border-radius: 10px;
+      height: 200px;
+    }
+  }
+  .launch-metadata-container {
+    font-size: 1.2rem;
+    width: 40%;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    .launch-name-container {
+      .launch-link {
+        text-decoration: none;
+        h5 {
+          color: $secondary-focus-color;
+          font-size: 1.3rem;
+          margin-top: 0px;
+          margin-bottom: 20px;
+          &:hover {
+            color: $secondary-focus-color-hover;
+          }
+        }
+      }
+    }
+    .launch-start-date-container, .launch-end-date-container {
+      text-align: start;
+      margin-bottom: 5px;
+      font-size: 1rem;
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+  .launch-success-container {
+    width: 10%;
+  }
+  .button-container {
+    width: 8%;
+  }
+}

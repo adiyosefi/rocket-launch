@@ -4,42 +4,31 @@ import LaunchesList from "./../LaunchesList/LaunchesList";
 import {LaunchesContext} from "../../context/launches";
 import useLaunchSearch from './../../hooks/useLaunchSearch'
 import {useLocalStorage} from "../../hooks/useLocalStorage";
+import './AppContainer.scss';
 
 const AppContainer = () => {
 
-    // for infinite scrolling used this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
-    const [query, setQuery] = useState('');
-    const [pageNumber, setPageNumber] = useState(0);
-
-    const [favLaunchesFilterChecked, setFavLaunchesFilterChecked] = useState(false);
-
-    const [favoriteLaunchesList, setFavoriteLaunchesList] = useLocalStorage('favoriteLaunchesList', []);
-
-    // const [launchesList, setLaunchesList] = useState([]);
-    // const [showLaunchesListError, setShowLaunchesListError] = useState(null);
-    // const [loading, setLoading] = useState(false);
-    // const [page, setPage] = useState(0);
-    //
-    // const apiLaunchesURL = `https://launchlibrary.net/1.4/launch?offset=${page}?limit=10`;
-    //
-    // function getLaunches(page) {
-    //     setLoading(true);
-    //     axios.get(apiLaunchesURL)
-    //         .then(res => {
-    //             setLaunchesList([...launchesList, ...res.data.launches] );
-    //             setLoading(false);
-    //         })
-    //         .catch(error => {
-    //         console.log(error);
-    //         setShowLaunchesListError("Error fetching launches");
-    //         });
-    // }
-    //
-    // useEffect(() => {
-    //     getLaunches(page);
-    // }, []);
+    const {launchesList,
+        setLaunchesList,
+        launchesListSearchResults,
+        hasMore,
+        hasMoreFavoriteLaunches,
+        loading,
+        loadingFavoriteLaunches,
+        errorLaunches,
+        errorFavoriteLaunches,
+        favLaunchesSearchResults,
+        setFavLaunchesSearchResults,
+        query,
+        setQuery,
+        setPageNumber,
+        favLaunchesFilterChecked,
+        setFavLaunchesFilterChecked,
+        favoriteLaunchesList,
+        setFavoriteLaunchesList} = useContext(LaunchesContext);
 
     function handleInputChange(e) {
+        setPageNumber(0)
         setQuery(e.target.value);
     }
 
@@ -47,13 +36,6 @@ const AppContainer = () => {
         setQuery(e.target.value);
     }
 
-    const {
-        launchesList,
-        setLaunchesList,
-        hasMore,
-        loading,
-        error
-    } = useLaunchSearch(query, pageNumber, favLaunchesFilterChecked, favoriteLaunchesList);
 
     const observer = useRef()
     const lastLaunchElementRef = useCallback(node => {
@@ -67,61 +49,51 @@ const AppContainer = () => {
         if (node) observer.current.observe(node)
     }, [loading, hasMore])
 
-    const isInFavoriteLaunchesList = (launchId) => {
-        for (let i = 0 ; i < favoriteLaunchesList.length ; i++){
-            if (launchId === favoriteLaunchesList[i]){
-                return true;
-            }
-        }
-        return false;
-    };
-
-    const showFavoriteLaunches = () => {
-        let newListToShow = [];
-        launchesList.map((l) => {
-            if (isInFavoriteLaunchesList(l.id)){
-                newListToShow.push(l);
-            }
-        })
-        setLaunchesList(newListToShow);
-    }
-
-    let tempList = launchesList.filter(l => {
-        if (isInFavoriteLaunchesList(l.id)){
-            return true;
-        }
-    });
-
     const toggleChecked = () => {
         setFavLaunchesFilterChecked(!favLaunchesFilterChecked);
+        setPageNumber(0)
     }
 
-
     return (
-        <div>
-            <div className="app-title">
-                <h1>Rocket Launch</h1>
-            </div>
-            <div>
-                <div className="launches-search-container">
-                    <input type="text" placeholder="Search launch..." value={query} onChange={e => handleInputChange(e)}></input>
+        <div className="app-container">
+            <div className="background">
+                <div className="app-title">
+                    <h1>Rocket Launch</h1>
                 </div>
-                <div className="launches-favorite-button-container">
-                    <label htmlFor="checkbox-fav-launches"
-                           className={`${favLaunchesFilterChecked ? 'fav-launches-filter-checked' : 'fav-launches-filter-unchecked'}`}>
-                        <input type="checkbox" id="checkbox-fav-launches" onClick={() => toggleChecked()} />
-                        {!favLaunchesFilterChecked ?
-                            'Show favorite launches'
-                            :
-                            'Back to all launches'
-                        }
-                    </label>
+                <div className="launches-filters-container">
+                    <div className="launches-search-container">
+                        <i className="fa fa-search"></i><input type="text" placeholder="Search launch..." value={query} onChange={e => handleInputChange(e)}></input>
+                    </div>
+                    <div className="launches-favorite-button-container">
+                        <label htmlFor="checkbox-fav-launches"
+                               className={`${favLaunchesFilterChecked ? 'fav-launches-filter-checked' : 'fav-launches-filter-unchecked'}`}>
+                            <input type="checkbox" id="checkbox-fav-launches" onClick={() => toggleChecked()} />
+                            {!favLaunchesFilterChecked ?
+                                <span>Show Favorite Launches <i className="fa fa-star"></i></span>
+                                :
+                                <span><i className="fa fa-arrow-left"></i> Back to All Launches</span>
+                            }
+                        </label>
+                    </div>
                 </div>
             </div>
-            <div className="launches-list-container">
-                <LaunchesList launchesList={launchesList} setLaunchesList={setLaunchesList} error={error}
-                              loading={loading} lastLaunchElementRef={lastLaunchElementRef}
-                              favoriteLaunchesList={favoriteLaunchesList} setFavoriteLaunchesList={setFavoriteLaunchesList}/>
+            <div className="app-content">
+                <div className="app-secondary-title">
+                    {!favLaunchesFilterChecked ?
+                        <h2>All Launches</h2>
+                        :
+                        <h2>Favorite Launches</h2>
+                    }
+                </div>
+                <div className="app-list-container">
+                    <LaunchesList launchesList={launchesList} setLaunchesList={setLaunchesList} errorLaunches={errorLaunches}
+                                  launchesListSearchResults={launchesListSearchResults}
+                                  loading={loading} lastLaunchElementRef={lastLaunchElementRef}
+                                  favoriteLaunchesList={favoriteLaunchesList} setFavoriteLaunchesList={setFavoriteLaunchesList}
+                                  favLaunchesFilterChecked={favLaunchesFilterChecked} hasMoreFavoriteLaunches={hasMoreFavoriteLaunches}
+                                  favLaunchesSearchResults={favLaunchesSearchResults} setFavLaunchesSearchResults={setFavLaunchesSearchResults}
+                                  errorFavoriteLaunches={errorFavoriteLaunches} query={query} loadingFavoriteLaunches={loadingFavoriteLaunches}/>
+                </div>
             </div>
         </div>
     );

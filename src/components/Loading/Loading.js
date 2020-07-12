@@ -18,10 +18,12 @@ const Loading = () => {
     }, []);
 
     return (
-        <Box display="flex" justifyContent="center" alignItems="center" m={1}
-             p={1} width={1} height={200}>
-            <CircularProgress variant="determinate" value={progress} style={{ color: 'rgb(202, 184, 27)' }} />
-        </Box>
+        <div>
+            <Box display="flex" justifyContent="center" alignItems="center" m={1}
+                 p={1} width={1} height={200}>
+                <CircularProgress variant="determinate" value={progress} style={{ color: 'rgba(187, 149, 241, 0.84)' }} />
+            </Box>
+        </div>
     );
 };
 

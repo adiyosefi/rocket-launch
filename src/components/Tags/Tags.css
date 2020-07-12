@@ -1,15 +1,16 @@
 .label {
-  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 .label .success {
-  background-color: #49a54c;
+  color: #49a54c;
   padding: 8px;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 .label .failed {
-  background-color: #f44336;
+  color: #f44336;
   padding: 8px;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 /*# sourceMappingURL=Tags.css.map */

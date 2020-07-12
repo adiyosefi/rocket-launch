@@ -1,5 +1,6 @@
 import React from 'react';
 import PadItem from "./PadItem";
+import '../LaunchDetails.scss'
 
 const LocationDetails = ({location}) => {
     const locationPads = location.pads.map((pad) =>
@@ -9,18 +10,27 @@ const LocationDetails = ({location}) => {
     )
 
     return (
-        <div>
-            <h3>Location</h3>
-            <div className="location-name">
-                {location.name}
+        <>
+            <div className="location-container">
+                <div className="location-meta-container">
+                    <h3>Location</h3>
+                    <div className="location-name">
+                        {location.name}
+                    </div>
+                </div>
+                {
+                    location.pads.length !== 0 ?
+                        <div className="location-pads">
+                            <h4>Pads</h4>
+                            <ul>
+                                {locationPads}
+                            </ul>
+                        </div>
+                        : null
+                }
             </div>
-            <div className="location-pads">
-                <h4>Pads</h4>
-                <ul>
-                    {locationPads}
-                </ul>
-            </div>
-        </div>
+            <b className="hr"></b>
+        </>
     );
 };
 

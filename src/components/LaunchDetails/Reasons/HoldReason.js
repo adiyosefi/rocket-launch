@@ -2,8 +2,8 @@ import React from 'react';
 
 const HoldReason = ({ holdreason }) => {
     return (
-        <div>
-           Hold reason: {holdreason}
+        <div className="launch-hold-reason">
+            <span>Hold reason:</span> {holdreason}
         </div>
     );
 };

@@ -9,7 +9,7 @@ const PayloadsList = ({ payloads }) => {
     )
 
     return (
-        <div>
+        <div className="payloads-container">
             <h4>Payloads</h4>
             <ul>
                 {payloadsList}

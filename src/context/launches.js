@@ -1,44 +1,56 @@
 import React, { useEffect, useState, createContext } from "react";
 import axios from "axios";
+import {useLocalStorage} from "../hooks/useLocalStorage";
+import useLaunchSearch from "../hooks/useLaunchSearch";
 
 export const LaunchesContext = createContext({});
 
 export const LaunchesProvider = ({ children }) => {
-    const [responseObject, setResponseObject] = useState({});
-    const [launchesList, setLaunchesList] = useState([]);
-    const [showLaunchesListError, setShowLaunchesListError] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState(0);
+    // for infinite scrolling used this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
+    const [query, setQuery] = useState('');
+    const [pageNumber, setPageNumber] = useState(0);
 
+    const [favLaunchesFilterChecked, setFavLaunchesFilterChecked] = useState(false);
 
-    function getLaunches(page) {
-        const apiLaunchesURL = `https://launchlibrary.net/1.4/launch?offset=${page}?limit=-1`;
+    const [favoriteLaunchesList, setFavoriteLaunchesList] = useLocalStorage('favoriteLaunchesList', []);
 
-        setLoading(true);
-        axios.get(apiLaunchesURL)
-            .then(res => {
-                setLaunchesList([...launchesList, ...res.data.launches] );
-                setResponseObject(res.data);
-                setPage(res.data.offset);
-                console.log(res.data)
-                setLoading(false);
-            })
-            .catch(error => {
-                console.log(error);
-                setShowLaunchesListError("Error fetching launches");
-                setLoading(false);
-            });
-    }
+    const {
+        launchesList,
+        setLaunchesList,
+        launchesListSearchResults,
+        hasMore,
+        hasMoreFavoriteLaunches,
+        loading,
+        loadingFavoriteLaunches,
+        errorLaunches,
+        errorFavoriteLaunches,
+        favLaunchesSearchResults,
+        setFavLaunchesSearchResults
+    } = useLaunchSearch(query, pageNumber, setPageNumber, favLaunchesFilterChecked, favoriteLaunchesList, setFavoriteLaunchesList);
 
-    useEffect(() => {
-        getLaunches(page);
-    }, []);
 
     return (
         <LaunchesContext.Provider
             value={{
-                responseObject, setResponseObject, launchesList, setLaunchesList, showLaunchesListError, setShowLaunchesListError,
-                loading, setLoading, page, setPage, getLaunches
+                launchesList,
+                setLaunchesList,
+                launchesListSearchResults,
+                hasMore,
+                hasMoreFavoriteLaunches,
+                loading,
+                loadingFavoriteLaunches,
+                errorLaunches,
+                errorFavoriteLaunches,
+                favLaunchesSearchResults,
+                setFavLaunchesSearchResults,
+                query,
+                setQuery,
+                pageNumber,
+                setPageNumber,
+                favLaunchesFilterChecked,
+                setFavLaunchesFilterChecked,
+                favoriteLaunchesList,
+                setFavoriteLaunchesList
             }}
         >
             {children}

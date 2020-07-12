@@ -1,21 +1,27 @@
 import React from 'react';
 import AgenciesList from "../Agencies/AgenciesList";
 import PayloadsList from "./Payloads/PayloadsList";
+import '../LaunchDetails.scss';
 
 const MissionItem = ({name, type, description, agencies, wikiURL, payloads}) => {
     return (
         <div>
             <div className="mission-name">
-                {name}
+                <h4>{name}</h4>
             </div>
-            <div className="mission-type">
-                Type: {type}
-            </div>
-            <div className="mission-description">
-                Description: {description}
-            </div>
-            <div className="mission-wikiURL">
-                <a href={wikiURL} target='_blank' rel="noopener noreferrer">More info</a>
+            <div className="mission-metadata">
+                <div className="mission-type">
+                    <span>Type:</span> {type}
+                </div>
+                <div className="mission-description">
+                    <span>Description:</span>
+                    <div>
+                    {description}
+                    </div>
+                </div>
+                <div className="mission-wikiURL">
+                    <a href={wikiURL} target='_blank' rel="noopener noreferrer">More info</a>
+                </div>
             </div>
             <div className="mission-agencies">
                 { agencies && agencies.length !== 0 ?

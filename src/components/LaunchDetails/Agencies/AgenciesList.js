@@ -1,5 +1,6 @@
 import React from 'react';
 import AgencyItem from "./AgencyItem";
+import '../LaunchDetails.scss'
 
 const AgenciesList = ({ agencies }) => {
     const agenciesList = agencies.map((agency) =>
@@ -9,7 +10,7 @@ const AgenciesList = ({ agencies }) => {
     )
 
     return (
-        <div>
+        <div className="agencies-container">
             <h4>Agencies</h4>
             <ul>
                 {agenciesList}

@@ -1,14 +1,337 @@
 @import "utilities/variables";
 
+$bg: #10111F;
+$barsize: 15px;
+
 .launch-details-container {
-  padding: 20px;
-  text-align: center;
-  background-color: $primary-background-color;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
+  .launches-to-show-container {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .all-launches-link-container {
+      margin-top: 20px;
+      margin-left: 20px;
+      align-self: start;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $secondary-focus-color;
+      height: 30px;
+      width: fit-content;
+      padding: 5px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border-color: transparent;
+      &:hover {
+        background-color: $secondary-focus-color-hover;
+      }
+      .all-launches-link {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+    .launch-rocket-image-container {
+      img {
+        border-radius: 10px;
+      }
+    }
+    .launch-metadata-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      .launch-dates-status-container {
+        .launch-dates-container {
+          margin-bottom: 30px;
+          .launch-start-date-container, .launch-end-date-container {
+            margin-bottom: 10px;
+            span {
+              text-decoration: underline;
+            }
+          }
+        }
+        .launch-status-container {
+          margin-top: 10px;
+          margin-bottom: 30px;
+          .launch-success-container {
+          }
+          .launch-fail-reason-container {
+            margin-top: 10px;
+            .launch-fail-reason {
+              span {
+                text-decoration: underline;
+              }
+            }
+          }
+          .launch-hold-reason-container {
+            .launch-hold-reason {
+              span {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      .button-container {
+        position: absolute;
+        right: 22%;
+      }
+    }
+  }
+  // Divider from- https://codepen.io/simeydotme/pen/rVqrrN
+  .hr {
+    width: 80%;
+    height: 1px;
+    display: block;
+    position: relative;
+    margin-bottom: 0em;
+    padding: 2em 0;
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: 50%;
+      left: 0;
+    }
+    &:before {
+      background: linear-gradient( 90deg, $bg 0%, $bg 50%, transparent 50%, transparent 100% );
+      background-size: $barsize;
+      background-position: center;
+      z-index: 1;
+    }
+    &:after {
+      transition: opacity 0.3s ease, animation 0.3s ease;
+      background: linear-gradient(
+                      to right,
+                      #62efab 5%,
+                      #F2EA7D 15%,
+                      #F2EA7D 25%,
+                      #FF8797 35%,
+                      #FF8797 45%,
+                      #e1a4f4 55%,
+                      #e1a4f4 65%,
+                      #82fff4 75%,
+                      #82fff4 85%,
+                      #62efab 95%);
+      background-size: 200%;
+      background-position: 0%;
+      animation: bar 15s linear infinite;
+    }
+    @keyframes bar {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+  }
+  .lsp-container {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    .lsp-name {
+      a {
+        text-decoration: none;
+        color: $secondary-focus-color;
+        &:hover {
+          color: $secondary-focus-color-hover;
+        }
+      }
+    }
+  }
+  .location-container {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    width: 40%;
+    .location-meta-container {
+      margin-bottom: 40px;
+    }
+    .location-pads {
+      h4 {
+        margin-top: 60px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0px;
+        .pad-item {
+          padding: 15px 10px;
+          background-color: rgba(74, 79, 92, 0.29);
+          border-radius: 10px;
+          .pad-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 20px 10px;
+            .pad-name {
+              margin-right: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .rocket-container {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    .rocket-name {
+      a {
+        text-decoration: none;
+        color: $secondary-focus-color;
+        cursor: pointer;
+        &:hover {
+          color: $secondary-focus-color-hover;
+        }
+      }
+    }
+    .agencies-container {
+      h4 {
+        margin-top: 50px;
+        margin-bottom: 0px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0px;
+        .agency-item {
+          padding: 15px 10px;
+          background-color: rgba(74, 79, 92, 0.29);
+          border-radius: 10px;
+          .agency-name {
+            margin-bottom: 10px;
+            a {
+              text-decoration: none;
+              color: $secondary-focus-color;
+              cursor: pointer;
+              &:hover {
+                color: $secondary-focus-color-hover;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .missions-container {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    .missions-list {
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        list-style-type: none;
+        padding: 0px;
+        .mission-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          padding: 20px 30px;
+          background-color: rgba(74, 79, 92, 0.29);
+          border-radius: 10px;
+          .mission-name {
+            h4 {
+              font-weight: bold;
+              font-size: 1rem;
+            }
+          }
+          .mission-metadata {
+            width: 500px;
+            align-self: center;
+            font-size: 0.9rem;
+            .mission-description {
+              margin-top: 5px;
+              margin-bottom: 10px;
+            }
+            span {
+              text-decoration: underline;
+            }
+            a {
+              text-decoration: none;
+              color: $secondary-focus-color;
+              cursor: pointer;
+              &:hover {
+                color: $secondary-focus-color-hover;
+              }
+            }
+          }
+          .mission-agencies {
+            .agencies-container {
+              margin-top: 40px;
+              font-size: 0.9rem;
+              h4 {
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+              }
+              .agency-item {
+                .agency-name {
+                  margin-bottom: 3px;
+                  a {
+                    text-decoration: none;
+                    color: $secondary-focus-color;
+                    cursor: pointer;
+                    &:hover {
+                      color: $secondary-focus-color-hover;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .mission-payloads {
+            .payloads-container {
+              margin-top: 40px;
+              font-size: 0.9rem;
+              h4 {
+                margin-bottom: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .vidURL-container {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    h3 {
+      margin-bottom: 30px;
+    }
+  }
+  .infoURL-container {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    button {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1e66af;
+      height: 30px;
+      width: fit-content;
+      padding: 5px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border-color: transparent;
+      font-family: inherit;
+      a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+      }
+      &:hover {
+      background-color: #5092d0;
+      }
+    }
+  }
 }

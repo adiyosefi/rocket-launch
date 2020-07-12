@@ -1,0 +1,12 @@
+.launches-list-container {
+  width: 100%;
+}
+.launches-list-container .launches-list {
+  width: 100%;
+  list-style-type: none;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=LaunchesList.css.map */

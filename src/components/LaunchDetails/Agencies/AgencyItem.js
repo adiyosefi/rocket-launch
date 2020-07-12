@@ -9,7 +9,7 @@ const AgencyItem = ({ name, infoURLs, countryCode }) => {
             </div>
             <div className="agency-country">
                 {countryCode ?
-                    <span><i className="fa fa-large fa-globe"></i> {countryCode}</span>
+                    <span><i className="fa fa-large fa-globe"></i>&nbsp; {countryCode}</span>
                     :
                     null
                 }
