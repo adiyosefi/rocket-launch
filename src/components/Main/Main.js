@@ -11,7 +11,7 @@ const Main = () => {
                 <Switch>
                     <Route exact path="/" component={AppContainer} />
                     <Route path="/:launchId" component={LaunchDetails} />
-                    <Redirect from="/" to="/" />
+                    <Redirect from="/" to="/"/>
                 </Switch>
             </BrowserRouter>
         </LaunchesProvider>

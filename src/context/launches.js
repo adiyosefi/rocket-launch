@@ -1,12 +1,10 @@
-import React, { useEffect, useState, createContext } from "react";
-import axios from "axios";
+import React, { useState, createContext } from "react";
 import {useLocalStorage} from "../hooks/useLocalStorage";
 import useLaunchSearch from "../hooks/useLaunchSearch";
 
 export const LaunchesContext = createContext({});
 
 export const LaunchesProvider = ({ children }) => {
-    // for infinite scrolling used this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
     const [query, setQuery] = useState('');
     const [pageNumber, setPageNumber] = useState(0);
 

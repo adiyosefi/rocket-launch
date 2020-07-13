@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 
 export default function useLaunchSearch(query, pageNumber, setPageNumber, favLaunchesFilterChecked, favoriteLaunchesList, setFavoriteLaunchesList) {
+    // for infinite scrolling inspired by this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
     const [loading, setLoading] = useState(true);
     const [loadingFavoriteLaunches, setLoadingFavoriteLaunches] = useState(true);
     const [errorLaunches, setErrorLaunches] = useState(false);

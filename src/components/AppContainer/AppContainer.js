@@ -8,24 +8,13 @@ import './AppContainer.scss';
 
 const AppContainer = () => {
 
-    const {launchesList,
-        setLaunchesList,
-        launchesListSearchResults,
-        hasMore,
-        hasMoreFavoriteLaunches,
+    const {hasMore,
         loading,
-        loadingFavoriteLaunches,
-        errorLaunches,
-        errorFavoriteLaunches,
-        favLaunchesSearchResults,
-        setFavLaunchesSearchResults,
         query,
         setQuery,
         setPageNumber,
         favLaunchesFilterChecked,
-        setFavLaunchesFilterChecked,
-        favoriteLaunchesList,
-        setFavoriteLaunchesList} = useContext(LaunchesContext);
+        setFavLaunchesFilterChecked} = useContext(LaunchesContext);
 
     function handleInputChange(e) {
         setPageNumber(0)
