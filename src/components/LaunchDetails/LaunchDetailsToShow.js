@@ -92,7 +92,7 @@ const LaunchDetailsToShow = ({launch, setLaunch}) => {
                     }
                 </div>
             </div>
-            <b class="hr"></b>
+            <b className="hr"></b>
             {
                 launch.lsp ?
                     <LaunchServiceProviderDetails lsp={launch.lsp}/>

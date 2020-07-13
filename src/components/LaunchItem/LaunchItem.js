@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import moment from 'moment';
 import SuccessTag from "../Tags/SuccessTag";
 import FailedTag from "../Tags/FailedTag";
@@ -8,9 +8,10 @@ import {validURL} from "../../helpers/helperFunctions"
 import AddToFavoriteButton from "../Buttons/AddToFavoriteButton";
 import RemoveFromFavoriteButton from "../Buttons/RemoveFromFavoriteButton";
 import './LaunchItem.scss'
+import {LaunchesContext} from "../../context/launches";
 
 
-const LaunchItem = ({launch, favoriteLaunchesList, setFavoriteLaunchesList}) => {
+const LaunchItem = ({launch, favoriteLaunchesList}) => {
     // moment format date taken from- https://stackoverflow.com/questions/15993913/format-date-with-moment-js
     const launchStartDate = moment(launch.windowstart).format("dddd, MMMM Do YYYY, h:mm:ss a");
     const launchEndDate = moment(launch.windowend).format("dddd, MMMM Do YYYY, h:mm:ss a");
@@ -56,12 +57,10 @@ const LaunchItem = ({launch, favoriteLaunchesList, setFavoriteLaunchesList}) => 
             <div className="button-container">
                 { isInFavoriteLaunchesList(launch.id) ?
                     <RemoveFromFavoriteButton launch={launch}
-                                              favoriteLaunchesList={favoriteLaunchesList}
-                                              setFavoriteLaunchesList={setFavoriteLaunchesList} />
+                                              favoriteLaunchesList={favoriteLaunchesList} />
                     :
                     <AddToFavoriteButton launch={launch}
-                                         favoriteLaunchesList={favoriteLaunchesList}
-                                         setFavoriteLaunchesList={setFavoriteLaunchesList} />
+                                         favoriteLaunchesList={favoriteLaunchesList} />
                 }
             </div>
         </div>

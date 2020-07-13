@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Loading from "../Loading/Loading";
 import './LaunchesList.scss'
+import {LaunchesContext} from "../../context/launches";
 
+const NoLaunchesToShow = ({ launchesList }) => {
+    const {errorLaunches} = useContext(LaunchesContext);
 
-const NoLaunchesToShow = ({errorLaunches, launchesList}) => {
     return (
         <div className="no-launches-content">
         {errorLaunches && launchesList.length === 0 ?

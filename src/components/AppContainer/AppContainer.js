@@ -32,11 +32,6 @@ const AppContainer = () => {
         setQuery(e.target.value);
     }
 
-    function handleSearch(e) {
-        setQuery(e.target.value);
-    }
-
-
     const observer = useRef()
     const lastLaunchElementRef = useCallback(node => {
         if (loading) return
@@ -86,13 +81,7 @@ const AppContainer = () => {
                     }
                 </div>
                 <div className="app-list-container">
-                    <LaunchesList launchesList={launchesList} setLaunchesList={setLaunchesList} errorLaunches={errorLaunches}
-                                  launchesListSearchResults={launchesListSearchResults}
-                                  loading={loading} lastLaunchElementRef={lastLaunchElementRef}
-                                  favoriteLaunchesList={favoriteLaunchesList} setFavoriteLaunchesList={setFavoriteLaunchesList}
-                                  favLaunchesFilterChecked={favLaunchesFilterChecked} hasMoreFavoriteLaunches={hasMoreFavoriteLaunches}
-                                  favLaunchesSearchResults={favLaunchesSearchResults} setFavLaunchesSearchResults={setFavLaunchesSearchResults}
-                                  errorFavoriteLaunches={errorFavoriteLaunches} query={query} loadingFavoriteLaunches={loadingFavoriteLaunches}/>
+                    <LaunchesList lastLaunchElementRef={lastLaunchElementRef} />
                 </div>
             </div>
         </div>

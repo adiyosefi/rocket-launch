@@ -5,19 +5,14 @@ import {LaunchesContext} from "../../context/launches";
 import FavoriteLaunchesToShow from "./FavoriteLaunchesToShow";
 import NoFavLaunchesToShow from "./NoFavLaunchesToShow";
 
-const LaunchesList = ({launchesList, setLaunchesList, errorLaunches, launchesListSearchResults, loading, lastLaunchElementRef,
-                          favoriteLaunchesList, setFavoriteLaunchesList, favLaunchesFilterChecked, hasMoreFavoriteLaunches,
-                          favLaunchesSearchResults, setFavLaunchesSearchResults, errorFavoriteLaunches,
-                          query, loadingFavoriteLaunches }) => {
+const LaunchesList = ({ lastLaunchElementRef }) => {
 
-    const isInFavoriteLaunchesList = (launchId) => {
-        for (let i = 0 ; i < favoriteLaunchesList.length ; i++){
-            if (launchId === favoriteLaunchesList[i]){
-                return true;
-            }
-        }
-        return false;
-    };
+    const {launchesList,
+        launchesListSearchResults,
+        favLaunchesSearchResults,
+        query,
+        favLaunchesFilterChecked,
+        favoriteLaunchesList} = useContext(LaunchesContext);
 
     const listToUse = query.length > 0 ? launchesListSearchResults : launchesList;
 
@@ -26,20 +21,14 @@ const LaunchesList = ({launchesList, setLaunchesList, errorLaunches, launchesLis
     return (
         <div className="launches-content-container">
             {listToUse.length !== 0 && !favLaunchesFilterChecked ?
-                <LaunchesToShow launchesList={listToUse} setLaunchesList={setLaunchesList} loading={loading}
-                                lastLaunchElementRef={lastLaunchElementRef}
-                                favoriteLaunchesList={favoriteLaunchesList} setFavoriteLaunchesList={setFavoriteLaunchesList}/>
+                <LaunchesToShow launchesList={listToUse}
+                                lastLaunchElementRef={lastLaunchElementRef} />
                 : favListToUse.length !== 0 && favLaunchesFilterChecked  ?
-                    <FavoriteLaunchesToShow favoriteLaunchesList={favListToUse} loading={loadingFavoriteLaunches}
-                                            setFavoriteLaunchesList={setFavoriteLaunchesList} hasMoreFavoriteLaunches={hasMoreFavoriteLaunches}
-                                            favLaunchesSearchResults={favLaunchesSearchResults}
-                                            setFavLaunchesSearchResults={setFavLaunchesSearchResults} />
+                    <FavoriteLaunchesToShow favoriteLaunchesList={favListToUse} />
                     : listToUse.length === 0 && !favLaunchesFilterChecked ?
-                <NoLaunchesToShow errorLaunches={errorLaunches} launchesList={listToUse}/>
+                <NoLaunchesToShow launchesList={listToUse}/>
                 :  favListToUse.length === 0 && favLaunchesFilterChecked ?
-                            <NoFavLaunchesToShow errorFavoriteLaunches={errorFavoriteLaunches}
-                                              favoriteLaunchesList={favListToUse}
-                                              favLaunchesSearchResults={favLaunchesSearchResults} />
+                            <NoFavLaunchesToShow favoriteLaunchesList={favListToUse} />
                 : null}
         </div>
     );

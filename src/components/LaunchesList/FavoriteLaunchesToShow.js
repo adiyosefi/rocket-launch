@@ -4,10 +4,17 @@ import InfiniteScroll from 'react-infinite-scroller';
 import Loading from "../Loading/Loading";
 import './LaunchesList.scss'
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
+import {LaunchesContext} from "../../context/launches";
 
 
-const FavoriteLaunchesToShow = ({favoriteLaunchesList, setFavoriteLaunchesList, hasMoreFavoriteLaunches, loading,
-                                    favLaunchesSearchResults, setFavLaunchesSearchResults}) => {
+const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
+
+    const { hasMoreFavoriteLaunches,
+        loading,
+        loadingFavoriteLaunches,
+        favLaunchesSearchResults,
+        setFavLaunchesSearchResults,
+        setFavoriteLaunchesList} = useContext(LaunchesContext);
 
     //
     // function fetchMoreListItems(pageToLoad) {
@@ -22,8 +29,7 @@ const FavoriteLaunchesToShow = ({favoriteLaunchesList, setFavoriteLaunchesList, 
         return (
             <li key={launch.id} className="launch-item">
                 <LaunchItem launch={launch}
-                            favoriteLaunchesList={favoriteLaunchesList}
-                            setFavoriteLaunchesList={setFavoriteLaunchesList} />
+                            favoriteLaunchesList={favoriteLaunchesList} />
             </li>
         );
     });

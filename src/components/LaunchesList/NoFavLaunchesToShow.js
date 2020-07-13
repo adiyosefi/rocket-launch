@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Loading from "../Loading/Loading";
 import './LaunchesList.scss'
+import {LaunchesContext} from "../../context/launches";
 
+const NoFavLaunchesToShow = ({favoriteLaunchesList}) => {
+    const {errorFavoriteLaunches} = useContext(LaunchesContext);
 
-const NoFavLaunchesToShow = ({errorFavoriteLaunches, favoriteLaunchesList, favLaunchesSearchResults}) => {
     return (
         <div className="no-launches-content">
             {errorFavoriteLaunches || favoriteLaunchesList.length === 0 ?

@@ -1,15 +1,13 @@
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {useContext} from 'react';
 import LaunchItem from "../LaunchItem/LaunchItem";
-import InfiniteScroll from 'react-infinite-scroller';
 import Loading from "../Loading/Loading";
 import {LaunchesContext} from "../../context/launches";
-import axios from "axios";
-import {useLocalStorage} from "../../hooks/useLocalStorage";
 import './LaunchesList.scss'
 
+const LaunchesToShow = ({ lastLaunchElementRef, launchesList }) => {
 
-const LaunchesToShow = ({launchesList, setLaunchesList, loading, lastLaunchElementRef,
-                            favoriteLaunchesList, setFavoriteLaunchesList}) => {
+    const {loading,
+        favoriteLaunchesList} = useContext(LaunchesContext);
 
     console.log("favoriteLaunchesList", favoriteLaunchesList);
 
@@ -18,16 +16,14 @@ const LaunchesToShow = ({launchesList, setLaunchesList, loading, lastLaunchEleme
             return (
                 <li ref={lastLaunchElementRef} key={launch.id} className="launch-item">
                     <LaunchItem launch={launch}
-                                favoriteLaunchesList={favoriteLaunchesList}
-                                setFavoriteLaunchesList={setFavoriteLaunchesList} />
+                                favoriteLaunchesList={favoriteLaunchesList} />
                 </li>
             );
         } else {
             return (
                 <li key={launch.id} className="launch-item">
                     <LaunchItem launch={launch}
-                                favoriteLaunchesList={favoriteLaunchesList}
-                                setFavoriteLaunchesList={setFavoriteLaunchesList} />
+                                favoriteLaunchesList={favoriteLaunchesList} />
                 </li>
             );
         }

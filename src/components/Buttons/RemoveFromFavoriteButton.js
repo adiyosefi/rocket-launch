@@ -1,8 +1,11 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useContext, useEffect} from 'react';
 import './Buttons.scss'
 import Tooltip from "@material-ui/core/Tooltip";
+import {LaunchesContext} from "../../context/launches";
 
-const RemoveFromFavoriteButton = ({launch, favoriteLaunchesList, setFavoriteLaunchesList}) => {
+const RemoveFromFavoriteButton = ({launch, favoriteLaunchesList}) => {
+
+    const {setFavoriteLaunchesList} = useContext(LaunchesContext);
 
     const handleRemoveFromFavorites = useCallback(launchId => {
         const filterLaunches = favoriteLaunchesList.filter(launch => {
