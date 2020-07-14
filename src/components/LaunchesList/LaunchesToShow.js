@@ -9,8 +9,6 @@ const LaunchesToShow = ({ lastLaunchElementRef, launchesList }) => {
     const {loading,
         favoriteLaunchesList} = useContext(LaunchesContext);
 
-    console.log("favoriteLaunchesList", favoriteLaunchesList);
-
     const showLaunchesList = launchesList.map((launch, index) => {
         if (launchesList.length-1 === index){
             return (

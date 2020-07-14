@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import LaunchesToShow from "./LaunchesToShow";
 import NoLaunchesToShow from "./NoLaunchesToShow";
 import {LaunchesContext} from "../../context/launches";
@@ -14,20 +14,20 @@ const LaunchesList = ({ lastLaunchElementRef }) => {
         favLaunchesFilterChecked,
         favoriteLaunchesList} = useContext(LaunchesContext);
 
-    const listToUse = query.length > 0 ? launchesListSearchResults : launchesList;
+    const listToUse = query && query.length > 0 ? launchesListSearchResults : launchesList;
 
-    const favListToUse = query.length > 0 ? favLaunchesSearchResults : favoriteLaunchesList;
+    const favListToUse = query && query.length > 0 ? favLaunchesSearchResults : favoriteLaunchesList;
 
     return (
         <div className="launches-content-container">
-            {listToUse.length !== 0 && !favLaunchesFilterChecked ?
+            {(listToUse && listToUse.length) !== 0 && !favLaunchesFilterChecked ?
                 <LaunchesToShow launchesList={listToUse}
                                 lastLaunchElementRef={lastLaunchElementRef} />
-                : favListToUse.length !== 0 && favLaunchesFilterChecked  ?
+                : (favListToUse && favListToUse.length !== 0) && favLaunchesFilterChecked  ?
                     <FavoriteLaunchesToShow favoriteLaunchesList={favListToUse} />
-                    : listToUse.length === 0 && !favLaunchesFilterChecked ?
+                    : (listToUse && listToUse.length) === 0 && !favLaunchesFilterChecked ?
                 <NoLaunchesToShow launchesList={listToUse}/>
-                :  favListToUse.length === 0 && favLaunchesFilterChecked ?
+                :  (favListToUse && favListToUse.length) === 0 && favLaunchesFilterChecked ?
                             <NoFavLaunchesToShow favoriteLaunchesList={favListToUse} />
                 : null}
         </div>

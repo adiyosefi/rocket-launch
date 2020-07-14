@@ -30,7 +30,7 @@ const LaunchDetails = ({ match }) => {
             { loadingLaunch ?
                 <NoLaunchDetailsToShow launchError={launchError} loadingLaunch={loadingLaunch} /> :
                 launch && !loadingLaunch ?
-                <LaunchDetailsToShow launch={launch} setLaunch={setLaunch} />
+                <LaunchDetailsToShow launch={launch} />
                 : !loadingLaunch && !launch  ?
                         <Redirect to="/" /> : null}
         </div>

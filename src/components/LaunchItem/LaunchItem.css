@@ -1,17 +1,50 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 1 | @import "../rocket-launch/utilities/variables";
- *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   LaunchItem.scss 1:9  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"../rocket-launch/utilities/variables\";\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   LaunchItem.scss 1:9  root stylesheet";
+.container-per-launch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(74, 79, 92, 0.29);
+  border-radius: 10px;
 }
+.container-per-launch .launch-rocket-image-container img {
+  border-radius: 10px;
+  height: 200px;
+}
+.container-per-launch .launch-metadata-container {
+  font-size: 1.2rem;
+  width: 40%;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.container-per-launch .launch-metadata-container .launch-name-container .launch-link {
+  text-decoration: none;
+}
+.container-per-launch .launch-metadata-container .launch-name-container .launch-link h5 {
+  color: #9553f1;
+  font-size: 1.3rem;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+.container-per-launch .launch-metadata-container .launch-name-container .launch-link h5:hover {
+  color: #bb95f1;
+}
+.container-per-launch .launch-metadata-container .launch-start-date-container, .container-per-launch .launch-metadata-container .launch-end-date-container {
+  text-align: start;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+.container-per-launch .launch-metadata-container .launch-start-date-container span, .container-per-launch .launch-metadata-container .launch-end-date-container span {
+  text-decoration: underline;
+}
+.container-per-launch .launch-success-container {
+  width: 8%;
+}
+.container-per-launch .button-container {
+  width: 10%;
+}
+
+/*# sourceMappingURL=LaunchItem.css.map */

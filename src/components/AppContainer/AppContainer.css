@@ -1,17 +1,101 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 1 | @import "../rocket-launch/utilities/variables";
- *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   AppContainer.scss 1:9  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"../rocket-launch/utilities/variables\";\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   AppContainer.scss 1:9  root stylesheet";
+.app-container {
+  width: 100%;
 }
+.app-container .background {
+  padding: 30px 50px;
+  background-image: url("/images/rocket-background.jpg");
+  background-size: cover;
+  height: 50vh;
+  background-position: center 37%;
+  z-index: -1;
+}
+.app-container .background .app-title {
+  margin-bottom: 70px;
+}
+.app-container .background .app-title h1 {
+  margin-top: 9%;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(203, 204, 188, 0.959);
+  font-weight: bold;
+}
+.app-container .background .launches-filters-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+.app-container .background .launches-filters-container .launches-search-container {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #000;
+  color: black;
+  padding: 0px 10px;
+  padding-left: 20px;
+}
+.app-container .background .launches-filters-container .launches-search-container:focus {
+  outline: none;
+  border: 1px solid #9553f1;
+  border-radius: 10px;
+}
+.app-container .background .launches-filters-container .launches-search-container input[type=text] {
+  width: 250px;
+  height: 40px;
+  padding: 5px 15px;
+  margin-left: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  border: transparent;
+  border-radius: 10px;
+}
+.app-container .background .launches-filters-container .launches-search-container input[type=text]:focus {
+  outline: none;
+}
+.app-container .background .launches-filters-container .launches-favorite-button-container {
+  height: 40px;
+  width: 250px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.app-container .background .launches-filters-container .launches-favorite-button-container label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-container .background .launches-filters-container .launches-favorite-button-container .fav-launches-filter-checked {
+  background-color: #9553f1;
+  height: 40px;
+  width: 200px;
+  padding: 5px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+.app-container .background .launches-filters-container .launches-favorite-button-container .fav-launches-filter-checked:hover {
+  background-color: #bb95f1;
+}
+.app-container .background .launches-filters-container .launches-favorite-button-container .fav-launches-filter-unchecked {
+  background-color: #eac550;
+  height: 40px;
+  width: 200px;
+  padding: 5px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+.app-container .background .launches-filters-container .launches-favorite-button-container .fav-launches-filter-unchecked:hover {
+  background-color: #c7a845;
+}
+.app-container .background .launches-filters-container .launches-favorite-button-container input[type=checkbox] {
+  display: none;
+}
+.app-container .app-content {
+  padding: 30px 50px;
+  width: 95%;
+}
+.app-container .app-content .app-list-container {
+  padding: 5px 120px;
+}
+
+/*# sourceMappingURL=AppContainer.css.map */

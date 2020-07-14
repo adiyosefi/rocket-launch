@@ -7,21 +7,13 @@ import AppContainer from "../AppContainer/AppContainer";
 import LaunchDetails from "../LaunchDetails/LaunchDetails";
 
 describe('main using memory router', () => {
-    it('should show AppContainer component for / router (using memory router)', () => {
-        const component = mount(<MemoryRouter initialentries="{['/']}">
+    it('should show AppContainer component for /home router (using memory router)', () => {
+        const component = mount(<MemoryRouter initialEntries={['/']}>
                 <Main/>
             </MemoryRouter>
         );
         expect(component.find(AppContainer)).toHaveLength(1);
         expect(component.find(LaunchDetails)).toHaveLength(0);
-    })
-    it('should show LaunchDetails component for /:launchId router (using memory router)', () => {
-        const component = mount(<MemoryRouter initialentries="{['/233']}">
-                <Main/>
-            </MemoryRouter>
-        );
-        expect(component.find(LaunchDetails)).toHaveLength(1);
-        expect(component.find(AppContainer)).toHaveLength(0);
     })
     it('invalid path should not redirect to LaunchDetails', () => {
         const wrapper = mount(

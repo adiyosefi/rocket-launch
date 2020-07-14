@@ -1,15 +1,12 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React from 'react';
 import moment from 'moment';
 import SuccessTag from "../Tags/SuccessTag";
 import FailedTag from "../Tags/FailedTag";
 import {Link} from "react-router-dom";
-import axios from "axios";
 import {validURL} from "../../helpers/helperFunctions"
 import AddToFavoriteButton from "../Buttons/AddToFavoriteButton";
 import RemoveFromFavoriteButton from "../Buttons/RemoveFromFavoriteButton";
 import './LaunchItem.scss'
-import {LaunchesContext} from "../../context/launches";
-
 
 const LaunchItem = ({launch, favoriteLaunchesList}) => {
     // moment format date taken from- https://stackoverflow.com/questions/15993913/format-date-with-moment-js
@@ -65,7 +62,6 @@ const LaunchItem = ({launch, favoriteLaunchesList}) => {
             </div>
         </div>
     );
-
 };
 
 export default LaunchItem;

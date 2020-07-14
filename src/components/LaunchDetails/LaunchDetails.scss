@@ -1,4 +1,4 @@
-@import "utilities/variables";
+@import "src/utilities/variables";
 
 $bg: #10111F;
 $barsize: 15px;
@@ -18,7 +18,7 @@ $barsize: 15px;
     justify-content: center;
     .all-launches-link-container {
       margin-top: 20px;
-      margin-left: 20px;
+      margin-left: 40px;
       align-self: start;
       cursor: pointer;
       display: flex;
@@ -252,6 +252,8 @@ $barsize: 15px;
             .mission-description {
               margin-top: 5px;
               margin-bottom: 10px;
+              margin-left: 10px;
+              text-align: left;
             }
             span {
               text-decoration: underline;

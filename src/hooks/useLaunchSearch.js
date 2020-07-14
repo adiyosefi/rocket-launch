@@ -2,15 +2,13 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 
 export default function useLaunchSearch(query, pageNumber, setPageNumber, favLaunchesFilterChecked, favoriteLaunchesList, setFavoriteLaunchesList) {
-    // for infinite scrolling inspired by this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
+    // infinite scrolling in launches list inspired by this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
     const [loading, setLoading] = useState(true);
-    const [loadingFavoriteLaunches, setLoadingFavoriteLaunches] = useState(true);
     const [errorLaunches, setErrorLaunches] = useState(false);
     const [errorFavoriteLaunches, setErrorFavoriteLaunches] = useState(false);
     const [launchesList, setLaunchesList] = useState([]);
     const [launchesListSearchResults, setLaunchesListSearchResults] = useState([]);
     const [hasMore, setHasMore] = useState(false);
-    const [hasMoreFavoriteLaunches, setHasMoreFavoriteLaunches] = useState(false);
     const [favLaunchesSearchResults, setFavLaunchesSearchResults] = useState([]);
 
     useEffect(() => {
@@ -67,21 +65,16 @@ export default function useLaunchSearch(query, pageNumber, setPageNumber, favLau
         if (favLaunchesFilterChecked) {
             try {
                 setPageNumber(0);
-                setLoadingFavoriteLaunches(true);
                 setErrorFavoriteLaunches(false);
                 if (query.length > 0) {
                     setFavLaunchesSearchResults(favoriteLaunchesList.filter((launch) => {
                         return launch.name.toLowerCase().includes(query);
                     }))
-                    setHasMoreFavoriteLaunches(favLaunchesSearchResults.length > 0)
-                    setLoadingFavoriteLaunches(false);
                     if (favLaunchesSearchResults.length === 0){
                         setErrorFavoriteLaunches(true);
                     }
                 } else {
                     setFavoriteLaunchesList(favoriteLaunchesList);
-                    setHasMoreFavoriteLaunches(favoriteLaunchesList.length > 0)
-                    setLoadingFavoriteLaunches(false);
                     if (favoriteLaunchesList.length === 0){
                         setErrorFavoriteLaunches(true);
                     }
@@ -94,7 +87,7 @@ export default function useLaunchSearch(query, pageNumber, setPageNumber, favLau
         }
     }, [query, favLaunchesFilterChecked])
 
-    return {loading, loadingFavoriteLaunches, errorLaunches, errorFavoriteLaunches, launchesList, setLaunchesList,
-        launchesListSearchResults, hasMore, hasMoreFavoriteLaunches, favLaunchesSearchResults, setFavLaunchesSearchResults}
+    return {loading, errorLaunches, errorFavoriteLaunches, launchesList, setLaunchesList,
+        launchesListSearchResults, hasMore, favLaunchesSearchResults, setFavLaunchesSearchResults}
 };
 

@@ -1,9 +1,6 @@
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
-import axios from 'axios';
+import React, {useCallback, useContext, useRef} from 'react';
 import LaunchesList from "./../LaunchesList/LaunchesList";
 import {LaunchesContext} from "../../context/launches";
-import useLaunchSearch from './../../hooks/useLaunchSearch'
-import {useLocalStorage} from "../../hooks/useLocalStorage";
 import './AppContainer.scss';
 
 const AppContainer = () => {
@@ -36,6 +33,7 @@ const AppContainer = () => {
     const toggleChecked = () => {
         setFavLaunchesFilterChecked(!favLaunchesFilterChecked);
         setPageNumber(0)
+        setQuery('')
     }
 
     return (
@@ -46,11 +44,13 @@ const AppContainer = () => {
                 </div>
                 <div className="launches-filters-container">
                     <div className="launches-search-container">
-                        <i className="fa fa-search"></i><input type="text" placeholder="Search launch..." value={query} onChange={e => handleInputChange(e)}></input>
+                        <i className="fa fa-search"></i><input type="text" placeholder="Search launch..."
+                                                               value={query} onChange={e => handleInputChange(e)}></input>
                     </div>
                     <div className="launches-favorite-button-container">
                         <label htmlFor="checkbox-fav-launches"
-                               className={`${favLaunchesFilterChecked ? 'fav-launches-filter-checked' : 'fav-launches-filter-unchecked'}`}>
+                               className={`${favLaunchesFilterChecked ? 'fav-launches-filter-checked' 
+                                   : 'fav-launches-filter-unchecked'}`}>
                             <input type="checkbox" id="checkbox-fav-launches" onClick={() => toggleChecked()} />
                             {!favLaunchesFilterChecked ?
                                 <span>Show Favorite Launches <i className="fa fa-star"></i></span>

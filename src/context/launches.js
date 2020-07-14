@@ -17,15 +17,12 @@ export const LaunchesProvider = ({ children }) => {
         setLaunchesList,
         launchesListSearchResults,
         hasMore,
-        hasMoreFavoriteLaunches,
         loading,
-        loadingFavoriteLaunches,
         errorLaunches,
         errorFavoriteLaunches,
         favLaunchesSearchResults,
         setFavLaunchesSearchResults
     } = useLaunchSearch(query, pageNumber, setPageNumber, favLaunchesFilterChecked, favoriteLaunchesList, setFavoriteLaunchesList);
-
 
     return (
         <LaunchesContext.Provider
@@ -34,9 +31,7 @@ export const LaunchesProvider = ({ children }) => {
                 setLaunchesList,
                 launchesListSearchResults,
                 hasMore,
-                hasMoreFavoriteLaunches,
                 loading,
-                loadingFavoriteLaunches,
                 errorLaunches,
                 errorFavoriteLaunches,
                 favLaunchesSearchResults,

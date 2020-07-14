@@ -17,12 +17,12 @@ import {Link} from "react-router-dom";
 import {LaunchesContext} from "../../context/launches";
 
 
-const LaunchDetailsToShow = ({launch, setLaunch}) => {
+const LaunchDetailsToShow = ({launch}) => {
     // moment format date taken from- https://stackoverflow.com/questions/15993913/format-date-with-moment-js
     const launchStartDate = moment(launch.windowstart).format("dddd, MMMM Do YYYY, h:mm:ss a");
     const launchEndDate = moment(launch.windowend).format("dddd, MMMM Do YYYY, h:mm:ss a");
 
-    const {favoriteLaunchesList, setFavoriteLaunchesList} = useContext(LaunchesContext);
+    const {favoriteLaunchesList} = useContext(LaunchesContext);
 
     const isInFavoriteLaunchesList = (launchId) => {
         for (let i = 0 ; i < favoriteLaunchesList.length ; i++){
@@ -83,12 +83,10 @@ const LaunchDetailsToShow = ({launch, setLaunch}) => {
                 <div className="button-container">
                     {isInFavoriteLaunchesList(launch.id) ?
                         <RemoveFromFavoriteButton launch={launch}
-                                                  favoriteLaunchesList={favoriteLaunchesList}
-                                                  setFavoriteLaunchesList={setFavoriteLaunchesList} />
+                                                  favoriteLaunchesList={favoriteLaunchesList} />
                         :
                         <AddToFavoriteButton launch={launch}
-                                             favoriteLaunchesList={favoriteLaunchesList}
-                                             setFavoriteLaunchesList={setFavoriteLaunchesList} />
+                                             favoriteLaunchesList={favoriteLaunchesList} />
                     }
                 </div>
             </div>

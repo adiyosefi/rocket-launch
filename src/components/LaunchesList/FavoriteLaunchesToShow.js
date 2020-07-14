@@ -1,33 +1,28 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import LaunchItem from "../LaunchItem/LaunchItem";
 import InfiniteScroll from 'react-infinite-scroller';
 import Loading from "../Loading/Loading";
 import './LaunchesList.scss'
-import useInfiniteScroll from "../../hooks/useInfiniteScroll";
-import {LaunchesContext} from "../../context/launches";
-
 
 const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
 
-    const { hasMoreFavoriteLaunches,
-        loading,
-        loadingFavoriteLaunches,
-        favLaunchesSearchResults,
-        setFavLaunchesSearchResults,
-        setFavoriteLaunchesList} = useContext(LaunchesContext);
+    const [pageCountToDisplay, setPageCountToDisplay] = useState(10);
 
-    //
-    // function fetchMoreListItems(pageToLoad) {
-    //     if (pageToLoad < favoriteLaunchesList.length) {
-    //         setFavoriteLaunchesList(prevState => [...prevState, ...favoriteLaunchesList.slice(pageToLoad, pageToLoad + 1)])
-    //         pageToLoad = pageToLoad+1
-    //     }
-    // }
+    const [hasMore, setHasMore] = useState(favoriteLaunchesList.length > 10);
 
+    function fetchMoreListItems(pageToLoad) {
+        const futureCount = (pageToLoad+1)*10;
+        if (futureCount <= favoriteLaunchesList.length) {
+            setPageCountToDisplay(futureCount);
+        } else {
+            setPageCountToDisplay(favoriteLaunchesList.length);
+            setHasMore(false);
+        }
+    }
 
-    const showLaunchesList = favoriteLaunchesList.map((launch) => {
+    const showLaunchesList = favoriteLaunchesList.slice(0,pageCountToDisplay).map((launch) => {
         return (
-            <li key={launch.id} className="launch-item">
+            <li key={launch.id} className={`launch-item launch-item-${launch.id}`}>
                 <LaunchItem launch={launch}
                             favoriteLaunchesList={favoriteLaunchesList} />
             </li>
@@ -37,13 +32,13 @@ const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
     return (
         <div className="launches-list-container">
             <ul className="launches-list">
-                {/*<InfiniteScroll*/}
-                {/*    pageStart={0}*/}
-                {/*    loadMore={fetchMoreListItems}*/}
-                {/*    hasMore={hasMoreFavoriteLaunches}*/}
-                {/*    loader={<Loading />}>*/}
+                <InfiniteScroll
+                    pageStart={0}
+                    loadMore={fetchMoreListItems}
+                    hasMore={hasMore}
+                    loader={<Loading />}>
                     {showLaunchesList}
-                {/*</InfiniteScroll>*/}
+                </InfiniteScroll>
             </ul>
         </div>
     );
