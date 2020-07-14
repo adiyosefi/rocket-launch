@@ -39,7 +39,6 @@ export default function useLaunchSearch(query, pageNumber, setPageNumber, favLau
                 url: url,
                 cancelToken: new axios.CancelToken(c => cancel = c)
             }).then(res => {
-                console.log(res.data)
                 if (query.length > 0) {
                     setLaunchesListSearchResults(prevLaunches => {
                         return [...new Set([...prevLaunches, ...res.data.launches])]
@@ -55,7 +54,6 @@ export default function useLaunchSearch(query, pageNumber, setPageNumber, favLau
                 .catch(errorLaunches => {
                     if (axios.isCancel(errorLaunches)) return
                     setErrorLaunches(true);
-                    console.log(errorLaunches);
                 });
             return () => cancel()
         }
@@ -79,10 +77,8 @@ export default function useLaunchSearch(query, pageNumber, setPageNumber, favLau
                         setErrorFavoriteLaunches(true);
                     }
                 }
-                console.log("favLaunchesSearchResults", favLaunchesSearchResults)
             } catch (errorFavoriteLaunches) {
                 setErrorFavoriteLaunches(true);
-                console.log(errorFavoriteLaunches);
             }
         }
     }, [query, favLaunchesFilterChecked])

@@ -25,6 +25,7 @@ const LaunchDetails = ({ match }) => {
                 setLoadingLaunch(false);
             });
     }, [apiLaunchURL]);
+
     return (
         <div className="launch-details-container">
             { loadingLaunch ?

@@ -6,7 +6,6 @@ import FavoriteLaunchesToShow from "./FavoriteLaunchesToShow";
 import NoFavLaunchesToShow from "./NoFavLaunchesToShow";
 
 const LaunchesList = ({ lastLaunchElementRef }) => {
-
     const {launchesList,
         launchesListSearchResults,
         favLaunchesSearchResults,

@@ -4,7 +4,6 @@ import Tooltip from "@material-ui/core/Tooltip";
 import {LaunchesContext} from "../../context/launches";
 
 const RemoveFromFavoriteButton = ({launch, favoriteLaunchesList}) => {
-
     const {setFavoriteLaunchesList} = useContext(LaunchesContext);
 
     const handleRemoveFromFavorites = useCallback(launchId => {

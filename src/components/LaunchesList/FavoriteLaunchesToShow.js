@@ -5,7 +5,6 @@ import Loading from "../Loading/Loading";
 import './LaunchesList.scss'
 
 const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
-
     const [pageCountToDisplay, setPageCountToDisplay] = useState(10);
 
     const [hasMore, setHasMore] = useState(favoriteLaunchesList.length > 10);

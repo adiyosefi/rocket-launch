@@ -4,7 +4,6 @@ import {LaunchesContext} from "../../context/launches";
 import './AppContainer.scss';
 
 const AppContainer = () => {
-
     const {hasMore,
         loading,
         query,
@@ -18,6 +17,7 @@ const AppContainer = () => {
         setQuery(e.target.value);
     }
 
+    // infinite scrolling in launches list inspired by this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
     const observer = useRef()
     const lastLaunchElementRef = useCallback(node => {
         if (loading) return
