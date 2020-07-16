@@ -4,12 +4,12 @@ $border-radius-label: 15px;
 .label {
   font-weight: bold;
   font-size: 0.9rem;
-  .success {
+  .Succeed {
     color: #49a54c;
     padding: $padding-label;
     border-radius: $border-radius-label;
   }
-  .failed {
+  .Failed {
     color: #f44336;
     padding: $padding-label;
     border-radius: $border-radius-label;

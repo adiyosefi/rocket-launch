@@ -1,9 +1,17 @@
-import React from 'react';
+import React from "react";
 import AgenciesList from "../Agencies/AgenciesList";
 import PayloadsList from "./Payloads/PayloadsList";
-import '../LaunchDetails.scss';
+import "../LaunchDetails.scss";
+import LaunchLink from "../../Links/LaunchLink";
 
-const MissionItem = ({name, type, description, agencies, wikiURL, payloads}) =>
+const MissionItem = ({
+    name,
+    type,
+    description,
+    agencies,
+    wikiURL,
+    payloads,
+}) => (
     <div>
         <div className="mission-name">
             <h4>{name}</h4>
@@ -14,28 +22,23 @@ const MissionItem = ({name, type, description, agencies, wikiURL, payloads}) =>
             </div>
             <div className="mission-description">
                 <span>Description:</span>
-                <div>
-                    {description}
-                </div>
+                <div>{description}</div>
             </div>
             <div className="mission-wikiURL">
-                <a href={wikiURL} target='_blank' rel="noopener noreferrer">More info</a>
+                <LaunchLink href={wikiURL} title="More info"/>
             </div>
         </div>
         <div className="mission-agencies">
-            { agencies && agencies.length !== 0 ?
-                <AgenciesList agencies={agencies}/>
-                :
-                null
-            }
+            {agencies && agencies.length !== 0 && (
+                <AgenciesList agencies={agencies} />
+            )}
         </div>
         <div className="mission-payloads">
-            { payloads && payloads.length !== 0 ?
-                <PayloadsList payloads={payloads}/>
-                :
-                null
-            }
+            {payloads && payloads.length !== 0 && (
+                <PayloadsList payloads={payloads} />
+            )}
         </div>
     </div>
+);
 
 export default MissionItem;

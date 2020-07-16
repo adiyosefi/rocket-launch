@@ -1,19 +1,17 @@
-import React from 'react';
+import React from "react";
 import PayloadItem from "./PayloadItem";
 
 const PayloadsList = ({ payloads }) => {
-    const payloadsList = payloads.map((payload) =>
+    const payloadsList = payloads.map((payload) => (
         <li key={payload.id} className="payload-item">
             <PayloadItem name={payload.name} />
         </li>
-    )
+    ));
 
     return (
         <div className="payloads-container">
             <h4>Payloads</h4>
-            <ul>
-                {payloadsList}
-            </ul>
+            <ul>{payloadsList}</ul>
         </div>
     );
 };

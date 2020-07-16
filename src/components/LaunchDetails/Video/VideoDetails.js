@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactPlayer from 'react-player'
-import '../LaunchDetails.scss'
+import React from "react";
+import ReactPlayer from "react-player";
+import "../LaunchDetails.scss";
 
-const VideoDetails = ( { vidURL } ) =>
+const VideoDetails = ({ vidURL }) => (
     <>
         <div className="vidURL-container">
             <h3>Video</h3>
@@ -10,7 +10,8 @@ const VideoDetails = ( { vidURL } ) =>
                 <ReactPlayer url={vidURL} />
             </div>
         </div>
-        <b className="hr"></b>
+        <b className="hr"/>
     </>
+);
 
 export default VideoDetails;

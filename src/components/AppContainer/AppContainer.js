@@ -2,22 +2,30 @@ import React, {useCallback, useContext, useRef} from 'react';
 import LaunchesList from "./../LaunchesList/LaunchesList";
 import {LaunchesContext} from "../../context/launches";
 import './AppContainer.scss';
+import LaunchSearchInput from "./LaunchSearchInput";
+import FavoriteLaunchesFilter from "./FavoriteLaunchesFilter";
 
 const AppContainer = () => {
-    const {hasMore,
+    const {
+        hasMore,
         loading,
         query,
         setQuery,
         setPageNumber,
         favLaunchesFilterChecked,
-        setFavLaunchesFilterChecked} = useContext(LaunchesContext);
+        setFavLaunchesFilterChecked,
+    } = useContext(LaunchesContext);
 
-    function handleInputChange(e) {
+    const handleInputChange = useCallback(e => {
         setPageNumber(0)
         setQuery(e.target.value);
-    }
+    }, [setPageNumber, setQuery]);
 
     // infinite scrolling in launches list inspired by this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
+
+    // The observer is to asynchronously observe changes in the intersection of
+    // a target element with an ancestor element or with a top-level document's viewport.
+    // The observer will keep observing changes until reaching the end of the list.
     const observer = useRef()
     const lastLaunchElementRef = useCallback(node => {
         if (loading) return
@@ -28,13 +36,18 @@ const AppContainer = () => {
             }
         })
         if (node) observer.current.observe(node)
-    }, [loading, hasMore])
+    }, [loading, hasMore, setPageNumber])
 
-    const toggleChecked = () => {
+
+    const toggleChecked = useCallback(() => {
         setFavLaunchesFilterChecked(!favLaunchesFilterChecked);
-        setPageNumber(0)
-        setQuery('')
-    }
+        setPageNumber(0);
+        setQuery("");
+    }, [favLaunchesFilterChecked,
+        setFavLaunchesFilterChecked,
+        setPageNumber,
+        setQuery
+    ]);
 
     return (
         <div className="app-container">
@@ -43,31 +56,18 @@ const AppContainer = () => {
                     <h1>Rocket Launch</h1>
                 </div>
                 <div className="launches-filters-container">
-                    <div className="launches-search-container">
-                        <i className="fa fa-search"></i><input type="text" placeholder="Search launch..."
-                                                               value={query} onChange={e => handleInputChange(e)}></input>
-                    </div>
-                    <div className="launches-favorite-button-container">
-                        <label htmlFor="checkbox-fav-launches"
-                               className={`${favLaunchesFilterChecked ? 'fav-launches-filter-checked' 
-                                   : 'fav-launches-filter-unchecked'}`}>
-                            <input type="checkbox" id="checkbox-fav-launches" onClick={() => toggleChecked()} />
-                            {!favLaunchesFilterChecked ?
-                                <span>Show Favorite Launches <i className="fa fa-star"></i></span>
-                                :
-                                <span><i className="fa fa-arrow-left"></i> Back to All Launches</span>
-                            }
-                        </label>
-                    </div>
+                    <LaunchSearchInput query={query} handleInputChange={handleInputChange}/>
+                    <FavoriteLaunchesFilter favLaunchesFilterChecked={favLaunchesFilterChecked}
+                                                  toggleChecked={toggleChecked}/>
                 </div>
             </div>
             <div className="app-content">
                 <div className="app-secondary-title">
-                    {!favLaunchesFilterChecked ?
+                    {!favLaunchesFilterChecked ? (
                         <h2>All Launches</h2>
-                        :
+                    ) : (
                         <h2>Favorite Launches</h2>
-                    }
+                    )}
                 </div>
                 <div className="app-list-container">
                     <LaunchesList lastLaunchElementRef={lastLaunchElementRef} />

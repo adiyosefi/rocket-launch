@@ -17,17 +17,16 @@ $barsize: 15px;
     align-items: center;
     justify-content: center;
     .all-launches-link-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-top: 20px;
       margin-left: 40px;
       align-self: start;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background-color: $secondary-focus-color;
       height: 30px;
       width: fit-content;
-      padding: 5px 20px;
       font-size: 1rem;
       border-radius: 10px;
       border-color: transparent;
@@ -35,9 +34,15 @@ $barsize: 15px;
         background-color: $secondary-focus-color-hover;
       }
       .all-launches-link {
+        padding: 5px 20px;
+        width: 100%;
+        height: 100%;
         color: white;
         text-decoration: none;
         font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
     .launch-rocket-image-container {
@@ -68,14 +73,14 @@ $barsize: 15px;
           }
           .launch-fail-reason-container {
             margin-top: 10px;
-            .launch-fail-reason {
+            .launch-Fail-reason {
               span {
                 text-decoration: underline;
               }
             }
           }
           .launch-hold-reason-container {
-            .launch-hold-reason {
+            .launch-Hold-reason {
               span {
                 text-decoration: underline;
               }
@@ -313,26 +318,31 @@ $barsize: 15px;
   .infoURL-container {
     margin-top: 10px;
     margin-bottom: 50px;
-    button {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #1e66af;
-      height: 30px;
-      width: fit-content;
-      padding: 5px 20px;
-      font-size: 1rem;
-      border-radius: 10px;
-      border-color: transparent;
-      font-family: inherit;
-      a {
-        text-decoration: none;
+    a {
+      text-decoration: none;
+      button {
         color: white;
         font-weight: bold;
-      }
-      &:hover {
-      background-color: #5092d0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1e66af;
+        height: 30px;
+        width: fit-content;
+        padding: 5px 20px;
+        font-size: 1rem;
+        border-radius: 10px;
+        border-color: transparent;
+        font-family: inherit;
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          background-color: #5092d0;
+        }
       }
     }
   }

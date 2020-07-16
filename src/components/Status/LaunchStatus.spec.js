@@ -1,12 +1,9 @@
 import { shallow } from 'enzyme';
 import React from "react";
-import LaunchItem from "./LaunchItem";
-import AddToFavoriteButton from "../Buttons/AddToFavoriteButton";
-import RemoveFromFavoriteButton from "../Buttons/RemoveFromFavoriteButton";
-import FailedTag from "../Tags/FailedTag";
-import SuccessTag from "../Tags/SuccessTag";
+import Tag from "../Status/Tag";
+import LaunchStatus from "./LaunchStatus";
 
-describe('LaunchItem', () => {
+describe('LaunchStatus', () => {
     const testLaunch = {changed: "2019-03-23 22:40:18", failreason: "",
         hashtag: "", holdreason: "", id: 1829, infoURL: null, infoURLs: [],
         inhold: 0, isoend: "19610131T202119Z", isonet: "19610131T202119Z",
@@ -18,43 +15,30 @@ describe('LaunchItem', () => {
             imageSizes: [320, 480, 640, 720, 768, 800, 960, 1024, 1080, 1280, 1440, 1920], infoURLs: [], wikiURL: "https://en.wikipedia.org/wiki/Atlas-Agena"},
         status: 3, tbddate: 0, tbdtime: 0, vidURL: null, vidURLs: [], westamp: 0, windowend: "January 31, 1961 20:21:19 UTC",
         windowstart: "January 31, 1961 20:21:19 UTC", wsstamp: 0}
-    let testFavoriteList = [];
-    const success = <SuccessTag />;
-    const  failed = <FailedTag />
+    const success = <Tag label="Succeed"/>
+    const  failed = <Tag label="Failed"/>
     let wrapper;
 
-    const mountLaunchItem = () => {
+    const mountLaunchStatus = () => {
         return shallow(
-            <LaunchItem launch={testLaunch} favoriteLaunchesList={testFavoriteList}/>,
+            <LaunchStatus status={testLaunch.status}/>,
             {lifecycleExperimental: true, attachTo: document.createElement('div')}
         );
     };
 
     beforeEach(() => {
-        wrapper = mountLaunchItem();
+        wrapper = mountLaunchStatus();
     });
 
-    it('renders AddToFavoriteButton in LaunchItem if launch is not in the favorite list', () => {
-        const addToFavoriteButton = <AddToFavoriteButton launch={testLaunch} favoriteLaunchesList={testFavoriteList} />;
-        expect(wrapper).toContainReact(addToFavoriteButton);
-    });
-
-    it('renders RemoveFromFavoriteButton in LaunchItem if launch is in the favorite list', () => {
-        testFavoriteList.push(testLaunch);
-        wrapper = mountLaunchItem();
-        const removeFromFavoriteButton = <RemoveFromFavoriteButton launch={testLaunch} favoriteLaunchesList={testFavoriteList} />;
-        expect(wrapper).toContainReact(removeFromFavoriteButton);
-    });
-
-    it('renders SuccessTag in LaunchItem if launch status is 3', () => {
+    it('renders Success Tag in LaunchStatus if launch status is 3', () => {
         testLaunch.status = 3;
-        wrapper = mountLaunchItem();
+        wrapper = mountLaunchStatus();
         expect(wrapper).toContainReact(success);
     });
 
-    it('renders FailedTag in LaunchItem if launch status is 4', () => {
+    it('renders Failed Tag in LaunchStatus if launch status is 4', () => {
         testLaunch.status = 4;
-        wrapper = mountLaunchItem();
+        wrapper = mountLaunchStatus();
         expect(wrapper).toContainReact(failed);
     });
 });

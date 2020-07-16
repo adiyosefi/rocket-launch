@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 
-export default function useLaunchSearch(query, pageNumber, setPageNumber, favLaunchesFilterChecked, favoriteLaunchesList, setFavoriteLaunchesList) {
+export default function useLaunchSearch(
+    query,
+    pageNumber,
+    setPageNumber,
+    favLaunchesFilterChecked,
+    favoriteLaunchesList,
+    setFavoriteLaunchesList
+) {
     // infinite scrolling in launches list inspired by this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
     const [loading, setLoading] = useState(true);
     const [errorLaunches, setErrorLaunches] = useState(false);
     const [errorFavoriteLaunches, setErrorFavoriteLaunches] = useState(false);
     const [launchesList, setLaunchesList] = useState([]);
-    const [launchesListSearchResults, setLaunchesListSearchResults] = useState([]);
+    const [launchesListSearchResults, setLaunchesListSearchResults] = useState(
+        []
+    );
     const [hasMore, setHasMore] = useState(false);
     const [favLaunchesSearchResults, setFavLaunchesSearchResults] = useState([]);
 
@@ -18,44 +27,51 @@ export default function useLaunchSearch(query, pageNumber, setPageNumber, favLau
         } else if (favLaunchesFilterChecked) {
             setFavLaunchesSearchResults([])
         }
-    }, [query, favLaunchesFilterChecked])
+    }, [query, favLaunchesFilterChecked]);
 
     useEffect(() => {
         if (favLaunchesFilterChecked) {
             setFavLaunchesSearchResults(favLaunchesSearchResults)
             setFavoriteLaunchesList(favoriteLaunchesList)
         }
-    }, [favLaunchesFilterChecked, favoriteLaunchesList, favLaunchesSearchResults])
-
+    }, [
+        favLaunchesFilterChecked,
+        favoriteLaunchesList,
+        setFavoriteLaunchesList,
+        favLaunchesSearchResults
+    ]);
 
     useEffect(() => {
         if (!favLaunchesFilterChecked) {
-            let url = query ? `https://launchlibrary.net/1.4/launch/${query}?offset=${pageNumber}` : `https://launchlibrary.net/1.4/launch/?offset=${pageNumber}`
+            let url = query
+                ? `https://launchlibrary.net/1.4/launch/${query}?offset=${pageNumber}`
+                : `https://launchlibrary.net/1.4/launch/?offset=${pageNumber}`;
             setLoading(true);
             setErrorLaunches(false);
             let cancel;
             axios({
-                method: 'GET',
+                method: "GET",
                 url: url,
-                cancelToken: new axios.CancelToken(c => cancel = c)
-            }).then(res => {
-                if (query.length > 0) {
-                    setLaunchesListSearchResults(prevLaunches => {
-                        return [...new Set([...prevLaunches, ...res.data.launches])]
-                    })
-                } else {
-                    setLaunchesList(prevLaunches => {
-                        return [...new Set([...prevLaunches, ...res.data.launches])]
-                    })
-                }
-                setHasMore(res.data.launches.length > 0 && res.data.count === 10)
-                setLoading(false);
+                cancelToken: new axios.CancelToken((c) => (cancel = c)),
             })
-                .catch(errorLaunches => {
-                    if (axios.isCancel(errorLaunches)) return
+                .then((res) => {
+                    if (query.length > 0) {
+                        setLaunchesListSearchResults((prevLaunches) => {
+                            return [...new Set([...prevLaunches, ...res.data.launches])];
+                        });
+                    } else {
+                        setLaunchesList((prevLaunches) => {
+                            return [...new Set([...prevLaunches, ...res.data.launches])];
+                        });
+                    }
+                    setHasMore(res.data.launches.length > 0 && res.data.count === 10);
+                    setLoading(false);
+                })
+                .catch((errorLaunches) => {
+                    if (axios.isCancel(errorLaunches)) return;
                     setErrorLaunches(true);
                 });
-            return () => cancel()
+            return () => cancel();
         }
     }, [query, pageNumber, favLaunchesFilterChecked]);
 
@@ -65,15 +81,17 @@ export default function useLaunchSearch(query, pageNumber, setPageNumber, favLau
                 setPageNumber(0);
                 setErrorFavoriteLaunches(false);
                 if (query.length > 0) {
-                    setFavLaunchesSearchResults(favoriteLaunchesList.filter((launch) => {
-                        return launch.name.toLowerCase().includes(query);
-                    }))
-                    if (favLaunchesSearchResults.length === 0){
+                    setFavLaunchesSearchResults(
+                        favoriteLaunchesList.filter((launch) => {
+                            return launch.name.toLowerCase().includes(query);
+                        })
+                    );
+                    if (favLaunchesSearchResults.length === 0) {
                         setErrorFavoriteLaunches(true);
                     }
                 } else {
                     setFavoriteLaunchesList(favoriteLaunchesList);
-                    if (favoriteLaunchesList.length === 0){
+                    if (favoriteLaunchesList.length === 0) {
                         setErrorFavoriteLaunches(true);
                     }
                 }
@@ -81,9 +99,21 @@ export default function useLaunchSearch(query, pageNumber, setPageNumber, favLau
                 setErrorFavoriteLaunches(true);
             }
         }
-    }, [query, favLaunchesFilterChecked])
+    }, [query,
+        favLaunchesFilterChecked,
+        setPageNumber
+    ]);
 
-    return {loading, errorLaunches, errorFavoriteLaunches, launchesList, setLaunchesList,
-        launchesListSearchResults, hasMore, favLaunchesSearchResults, setFavLaunchesSearchResults}
+    return {
+        loading,
+        errorLaunches,
+        errorFavoriteLaunches,
+        launchesList,
+        setLaunchesList,
+        launchesListSearchResults,
+        hasMore,
+        favLaunchesSearchResults,
+        setFavLaunchesSearchResults,
+    };
 };
 

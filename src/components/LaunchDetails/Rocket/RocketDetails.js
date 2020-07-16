@@ -1,22 +1,21 @@
-import React from 'react';
+import React from "react";
 import AgenciesList from "../Agencies/AgenciesList";
-import '../LaunchDetails.scss'
+import "../LaunchDetails.scss";
+import LaunchLink from "../../Links/LaunchLink";
 
-const RocketDetails = ({ rocket }) =>
+const RocketDetails = ({ rocket }) => (
     <>
         <div className="rocket-container">
             <h3>Rocket</h3>
             <div className="rocket-name">
-                <a href={rocket.infoURLs[0]} target='_blank' rel="noopener noreferrer">{rocket.name}</a>
+                <LaunchLink href={rocket.infoURLs[0]} title={rocket.name}/>
             </div>
-            {
-                rocket.agencies && rocket.agencies.length !== 0 ?
-                    <AgenciesList agencies={rocket.agencies}/>
-                    :
-                    null
-            }
+            {rocket.agencies && rocket.agencies.length !== 0 && (
+                <AgenciesList agencies={rocket.agencies} />
+            )}
         </div>
-        <b className="hr"></b>
+        <b className="hr"/>
     </>
+);
 
 export default RocketDetails;

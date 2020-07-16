@@ -1,16 +1,21 @@
-import React, { useState, createContext } from "react";
-import {useLocalStorage} from "../hooks/useLocalStorage";
+import React, { createContext, useState } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import useLaunchSearch from "../hooks/useLaunchSearch";
 
 export const LaunchesContext = createContext({});
 
 export const LaunchesProvider = ({ children }) => {
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
 
-    const [favLaunchesFilterChecked, setFavLaunchesFilterChecked] = useState(false);
+    const [favLaunchesFilterChecked, setFavLaunchesFilterChecked] = useState(
+        false
+    );
 
-    const [favoriteLaunchesList, setFavoriteLaunchesList] = useLocalStorage('favoriteLaunchesList', []);
+    const [favoriteLaunchesList, setFavoriteLaunchesList] = useLocalStorage(
+        "favoriteLaunchesList",
+        []
+    );
 
     const {
         launchesList,
@@ -21,8 +26,15 @@ export const LaunchesProvider = ({ children }) => {
         errorLaunches,
         errorFavoriteLaunches,
         favLaunchesSearchResults,
-        setFavLaunchesSearchResults
-    } = useLaunchSearch(query, pageNumber, setPageNumber, favLaunchesFilterChecked, favoriteLaunchesList, setFavoriteLaunchesList);
+        setFavLaunchesSearchResults,
+    } = useLaunchSearch(
+        query,
+        pageNumber,
+        setPageNumber,
+        favLaunchesFilterChecked,
+        favoriteLaunchesList,
+        setFavoriteLaunchesList
+    );
 
     return (
         <LaunchesContext.Provider
@@ -43,7 +55,7 @@ export const LaunchesProvider = ({ children }) => {
                 favLaunchesFilterChecked,
                 setFavLaunchesFilterChecked,
                 favoriteLaunchesList,
-                setFavoriteLaunchesList
+                setFavoriteLaunchesList,
             }}
         >
             {children}

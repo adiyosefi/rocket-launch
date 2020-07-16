@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import LaunchItem from "../LaunchItem/LaunchItem";
-import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from "react-infinite-scroller";
 import Loading from "../Loading/Loading";
-import './LaunchesList.scss'
+import "./LaunchesList.scss";
 
 const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
     const [pageCountToDisplay, setPageCountToDisplay] = useState(10);
@@ -10,7 +10,7 @@ const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
     const [hasMore, setHasMore] = useState(favoriteLaunchesList.length > 10);
 
     function fetchMoreListItems(pageToLoad) {
-        const futureCount = (pageToLoad+1)*10;
+        const futureCount = (pageToLoad + 1) * 10;
         if (futureCount <= favoriteLaunchesList.length) {
             setPageCountToDisplay(futureCount);
         } else {
@@ -19,14 +19,18 @@ const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
         }
     }
 
-    const showLaunchesList = favoriteLaunchesList.slice(0,pageCountToDisplay).map((launch) => {
-        return (
-            <li key={launch.id} className={`launch-item launch-item-${launch.id}`}>
-                <LaunchItem launch={launch}
-                            favoriteLaunchesList={favoriteLaunchesList} />
-            </li>
-        );
-    });
+    const showLaunchesList = favoriteLaunchesList
+        .slice(0, pageCountToDisplay)
+        .map((launch) => {
+            return (
+                <li key={launch.id} className={`launch-item launch-item-${launch.id}`}>
+                    <LaunchItem
+                        launch={launch}
+                        favoriteLaunchesList={favoriteLaunchesList}
+                    />
+                </li>
+            );
+        });
 
     return (
         <div className="launches-list-container">
@@ -35,7 +39,8 @@ const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
                     pageStart={0}
                     loadMore={fetchMoreListItems}
                     hasMore={hasMore}
-                    loader={<Loading />}>
+                    loader={<Loading />}
+                >
                     {showLaunchesList}
                 </InfiniteScroll>
             </ul>

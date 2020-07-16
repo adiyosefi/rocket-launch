@@ -1,15 +1,9 @@
 import React from 'react';
-import Loading from "../Loading/Loading";
 
-const NoLaunchDetailsToShow = ({launchError, loadingLaunch}) =>
+const NoLaunchDetailsToShow = ({launchError}) => (
     <div className="no-launch-content">
-        {
-            launchError ?
-                launchError
-                : loadingLaunch ?
-                <Loading /> :
-                null
-        }
+        {launchError}
     </div>
+);
 
 export default NoLaunchDetailsToShow;
