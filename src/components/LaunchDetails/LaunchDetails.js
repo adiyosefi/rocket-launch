@@ -4,7 +4,7 @@ import LaunchDetailsToShow from "./LaunchDetailsToShow";
 import "./LaunchDetails.scss";
 import NoLaunchDetailsToShow from "./NoLaunchDetailsToShow";
 import { Redirect } from "react-router-dom";
-import Loading from "../Loading/Loading";
+import Loading from "../common/Loading";
 
 const LaunchDetails = ({ match }) => {
     const [launch, setLaunch] = useState(null);

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./LaunchItem.scss";
-import LaunchImage from "../LaunchImage/LaunchImage";
-import LaunchDate from "../Dates/LaunchDate";
-import LaunchStatus from "../Status/LaunchStatus";
-import FavoriteButton from "../Buttons/FavoriteButton";
+import LaunchImage from "../common/LaunchImage";
+import LaunchDate from "../common/LaunchDate";
+import LaunchStatus from "../common/status/LaunchStatus";
+import FavoriteButton from "../common/buttons/FavoriteButton";
 
 const LaunchItem = ({ launch, favoriteLaunchesList }) => {
     const {id,

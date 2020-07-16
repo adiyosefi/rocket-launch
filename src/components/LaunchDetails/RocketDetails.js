@@ -1,7 +1,7 @@
 import React from "react";
-import AgenciesList from "../Agencies/AgenciesList";
-import "../LaunchDetails.scss";
-import LaunchLink from "../../Links/LaunchLink";
+import AgenciesList from "./agencies/AgenciesList";
+import "./LaunchDetails.scss";
+import LaunchLink from "../common/LaunchLink";
 
 const RocketDetails = ({ rocket }) => (
     <>

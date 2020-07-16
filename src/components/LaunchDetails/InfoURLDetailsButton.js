@@ -1,5 +1,5 @@
 import React from "react";
-import "../LaunchDetails.scss";
+import "./LaunchDetails.scss";
 
 const InfoURLDetailsButton = ({ infoURL }) => (
     <div className="infoURL-container">

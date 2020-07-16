@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from "react";
-import AddToFavoriteButton from "../Buttons/AddToFavoriteButton";
-import RemoveFromFavoriteButton from "../Buttons/RemoveFromFavoriteButton";
+import AddToFavoriteButton from ".//AddToFavoriteButton";
+import RemoveFromFavoriteButton from ".//RemoveFromFavoriteButton";
 import FavoriteButton from "./FavoriteButton";
 
 describe('FavoriteButton', () => {

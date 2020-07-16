@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from "react";
-import Tag from "../Status/Tag";
+import Tag from ".//Tag";
 import LaunchStatus from "./LaunchStatus";
 
 describe('LaunchStatus', () => {

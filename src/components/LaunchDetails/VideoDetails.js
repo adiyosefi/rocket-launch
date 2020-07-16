@@ -1,6 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
-import "../LaunchDetails.scss";
+import "./LaunchDetails.scss";
 
 const VideoDetails = ({ vidURL }) => (
     <>

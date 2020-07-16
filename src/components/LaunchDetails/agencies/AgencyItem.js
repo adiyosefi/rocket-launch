@@ -1,6 +1,6 @@
 import React from "react";
 import "../LaunchDetails.scss";
-import LaunchLink from "../../../../../../Documents/rocket-launch/src/components/Links/LaunchLink";
+import LaunchLink from "../../common/LaunchLink";
 
 const AgencyItem = ({ name, infoURLs, countryCode }) => (
     <div>

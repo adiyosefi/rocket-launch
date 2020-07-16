@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import LaunchItem from "../LaunchItem/LaunchItem";
-import Loading from "../Loading/Loading";
+import Loading from "../common/Loading";
 import { LaunchesContext } from "../../context/launches";
 import "./LaunchesList.scss";
+import NoLaunchesToShow from "./NoLaunchesToShow";
 
 const LaunchesToShow = ({ lastLaunchElementRef, launchesList }) => {
     const { loading, favoriteLaunchesList } = useContext(LaunchesContext);
@@ -27,14 +28,15 @@ const LaunchesToShow = ({ lastLaunchElementRef, launchesList }) => {
                 </li>
             );
         }
-    });
+    })
 
     return (
         <div className="launches-list-container">
-            <ul className="launches-list">
+            {showLaunchesList.length ?
+                <ul className="launches-list">
                 {showLaunchesList}
                 {loading && <Loading />}
-            </ul>
+            </ul> : loading ? <Loading /> : <NoLaunchesToShow />}
         </div>
     );
 };

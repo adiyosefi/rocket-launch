@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import axios from "axios";
 
 export default function useLaunchSearch(
@@ -24,8 +24,6 @@ export default function useLaunchSearch(
         if (!favLaunchesFilterChecked) {
             setLaunchesList([])
             setLaunchesListSearchResults([])
-        } else if (favLaunchesFilterChecked) {
-            setFavLaunchesSearchResults([])
         }
     }, [query, favLaunchesFilterChecked]);
 
@@ -75,34 +73,11 @@ export default function useLaunchSearch(
         }
     }, [query, pageNumber, favLaunchesFilterChecked]);
 
-    useEffect(() => {
-        if (favLaunchesFilterChecked) {
-            try {
-                setPageNumber(0);
-                setErrorFavoriteLaunches(false);
-                if (query.length > 0) {
-                    setFavLaunchesSearchResults(
-                        favoriteLaunchesList.filter((launch) => {
-                            return launch.name.toLowerCase().includes(query);
-                        })
-                    );
-                    if (favLaunchesSearchResults.length === 0) {
-                        setErrorFavoriteLaunches(true);
-                    }
-                } else {
-                    setFavoriteLaunchesList(favoriteLaunchesList);
-                    if (favoriteLaunchesList.length === 0) {
-                        setErrorFavoriteLaunches(true);
-                    }
-                }
-            } catch (errorFavoriteLaunches) {
-                setErrorFavoriteLaunches(true);
-            }
-        }
-    }, [query,
-        favLaunchesFilterChecked,
-        setPageNumber
-    ]);
+    const filteredFavoriteLaunchesList = useMemo(() => (
+        favoriteLaunchesList.filter((launch) =>
+            launch.name.toLowerCase().includes(query)
+        )
+    ),[favoriteLaunchesList, query])
 
     return {
         loading,
@@ -110,10 +85,10 @@ export default function useLaunchSearch(
         errorFavoriteLaunches,
         launchesList,
         setLaunchesList,
+        filteredFavoriteLaunchesList,
         launchesListSearchResults,
         hasMore,
         favLaunchesSearchResults,
-        setFavLaunchesSearchResults,
     };
 };
 

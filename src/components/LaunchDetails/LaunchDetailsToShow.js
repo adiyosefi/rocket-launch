@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
-import LaunchServiceProviderDetails from "./LaunchServiceProvider/LaunchServiceProviderDetails";
-import LocationDetails from "./Location/LocationDetails";
-import RocketDetails from "./Rocket/RocketDetails";
-import MissionsDetails from "./Missions/MissionsDetails";
-import InfoURLDetailsButton from "./InfoURL/InfoURLDetailsButton";
-import VideoDetails from "./Video/VideoDetails";
+import LaunchServiceProviderDetails from "./LaunchServiceProviderDetails";
+import LocationDetails from "./location/LocationDetails";
+import RocketDetails from "./RocketDetails";
+import MissionsDetails from "./missions/MissionsDetails";
+import InfoURLDetailsButton from "./InfoURLDetailsButton";
+import VideoDetails from "./VideoDetails";
 import { Link } from "react-router-dom";
 import { LaunchesContext } from "../../context/launches";
-import LaunchImage from "../LaunchImage/LaunchImage";
-import LaunchDate from "../Dates/LaunchDate";
-import LaunchStatus from "../Status/LaunchStatus";
-import FavoriteButton from "../Buttons/FavoriteButton";
-import ErrorReason from "./Reasons/ErrorReason";
+import LaunchImage from "../common/LaunchImage";
+import LaunchDate from "../common/LaunchDate";
+import LaunchStatus from "../common/status/LaunchStatus";
+import FavoriteButton from "../common/buttons/FavoriteButton";
+import ErrorReason from "./ErrorReason";
 
 const LaunchDetailsToShow = ({ launch }) => {
     const {windowstart,

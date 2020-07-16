@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from "react";
 import "./Buttons.scss";
 import Tooltip from "@material-ui/core/Tooltip";
-import { LaunchesContext } from "../../context/launches";
+import { LaunchesContext } from "../../../context/launches";
 
 const AddToFavoriteButton = ({ launch, favoriteLaunchesList }) => {
     const { setFavoriteLaunchesList } = useContext(LaunchesContext);

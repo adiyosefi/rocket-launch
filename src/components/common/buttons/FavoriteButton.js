@@ -1,7 +1,7 @@
 import React from 'react';
 import RemoveFromFavoriteButton from "./RemoveFromFavoriteButton";
 import AddToFavoriteButton from "./AddToFavoriteButton";
-import '../LaunchDetails/LaunchDetails.scss';
+import '../../LaunchDetails/LaunchDetails.scss';
 
 const checkIfFavorite = (launchId, favoriteLaunchesList) => favoriteLaunchesList.some(listItem => listItem.id === launchId)
 

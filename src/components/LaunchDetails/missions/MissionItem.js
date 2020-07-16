@@ -1,8 +1,8 @@
 import React from "react";
-import AgenciesList from "../Agencies/AgenciesList";
+import AgenciesList from "../agencies/AgenciesList";
 import PayloadsList from "./Payloads/PayloadsList";
 import "../LaunchDetails.scss";
-import LaunchLink from "../../Links/LaunchLink";
+import LaunchLink from "../../common/LaunchLink";
 
 const MissionItem = ({
     name,

@@ -25,8 +25,7 @@ export const LaunchesProvider = ({ children }) => {
         loading,
         errorLaunches,
         errorFavoriteLaunches,
-        favLaunchesSearchResults,
-        setFavLaunchesSearchResults,
+        filteredFavoriteLaunchesList
     } = useLaunchSearch(
         query,
         pageNumber,
@@ -46,8 +45,6 @@ export const LaunchesProvider = ({ children }) => {
                 loading,
                 errorLaunches,
                 errorFavoriteLaunches,
-                favLaunchesSearchResults,
-                setFavLaunchesSearchResults,
                 query,
                 setQuery,
                 pageNumber,
@@ -56,6 +53,7 @@ export const LaunchesProvider = ({ children }) => {
                 setFavLaunchesFilterChecked,
                 favoriteLaunchesList,
                 setFavoriteLaunchesList,
+                filteredFavoriteLaunchesList
             }}
         >
             {children}
