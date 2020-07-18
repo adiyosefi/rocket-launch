@@ -21,7 +21,7 @@ describe('FavoriteButton', () => {
 
     const mountFavoriteButton = () => {
         return shallow(
-            <FavoriteButton launch={testLaunch} favoriteLaunchesList={testFavoriteList}/>,
+            <FavoriteButton launch={testLaunch} favoriteLaunchesList={testFavoriteList} />,
             {lifecycleExperimental: true, attachTo: document.createElement('div')}
         );
     };
@@ -31,14 +31,14 @@ describe('FavoriteButton', () => {
     });
 
     it('renders AddToFavoriteButton in FavoriteButton if launch is not in the favorite list', () => {
-        const addToFavoriteButton = <AddToFavoriteButton launch={testLaunch} favoriteLaunchesList={testFavoriteList} />;
+        const addToFavoriteButton = <AddToFavoriteButton launch={testLaunch} />;
         expect(wrapper).toContainReact(addToFavoriteButton);
     });
 
     it('renders RemoveFromFavoriteButton in FavoriteButton if launch is in the favorite list', () => {
         testFavoriteList.push(testLaunch);
         wrapper = mountFavoriteButton();
-        const removeFromFavoriteButton = <RemoveFromFavoriteButton launch={testLaunch} favoriteLaunchesList={testFavoriteList} />;
+        const removeFromFavoriteButton = <RemoveFromFavoriteButton launch={testLaunch} />;
         expect(wrapper).toContainReact(removeFromFavoriteButton);
     });
 });

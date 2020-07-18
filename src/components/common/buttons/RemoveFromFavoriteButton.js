@@ -3,17 +3,17 @@ import "./Buttons.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 import { LaunchesContext } from "../../../context/launches";
 
-const RemoveFromFavoriteButton = ({ launch, favoriteLaunchesList }) => {
-    const { setFavoriteLaunchesList } = useContext(LaunchesContext);
+const RemoveFromFavoriteButton = ({ launch }) => {
+    const { filteredFavoriteLaunchesList, setFavoriteLaunchesList } = useContext(LaunchesContext);
 
     const handleRemoveFromFavorites = useCallback(
         (launchId) => {
-            const filterLaunches = favoriteLaunchesList.filter((launch) => {
+            const filterLaunches = filteredFavoriteLaunchesList.filter((launch) => {
                 return launch.id !== launchId;
             });
             setFavoriteLaunchesList(filterLaunches);
         },
-        [favoriteLaunchesList, setFavoriteLaunchesList]
+        [filteredFavoriteLaunchesList, setFavoriteLaunchesList]
     );
 
     return (
@@ -25,7 +25,7 @@ const RemoveFromFavoriteButton = ({ launch, favoriteLaunchesList }) => {
                         handleRemoveFromFavorites(launch.id);
                     }}
                 >
-                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"/>
                 </button>
             </Tooltip>
         </div>

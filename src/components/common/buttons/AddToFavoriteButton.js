@@ -3,7 +3,7 @@ import "./Buttons.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 import { LaunchesContext } from "../../../context/launches";
 
-const AddToFavoriteButton = ({ launch, favoriteLaunchesList }) => {
+const AddToFavoriteButton = ({ launch }) => {
     const { setFavoriteLaunchesList } = useContext(LaunchesContext);
 
     const handleAddToFavorites = useCallback(
@@ -24,7 +24,7 @@ const AddToFavoriteButton = ({ launch, favoriteLaunchesList }) => {
                         handleAddToFavorites(launch);
                     }}
                 >
-                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"/>
                 </button>
             </Tooltip>
         </div>

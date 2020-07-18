@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import "./LaunchItem.scss";
 import LaunchImage from "../common/LaunchImage";
 import LaunchDate from "../common/LaunchDate";
 import LaunchStatus from "../common/status/LaunchStatus";
 import FavoriteButton from "../common/buttons/FavoriteButton";
+import {LaunchesContext} from "../../context/launches";
 
-const LaunchItem = ({ launch, favoriteLaunchesList }) => {
+const LaunchItem = ({ launch }) => {
+    const { filteredFavoriteLaunchesList } = useContext(LaunchesContext);
     const {id,
         windowstart,
         windowend,
@@ -33,7 +35,7 @@ const LaunchItem = ({ launch, favoriteLaunchesList }) => {
             </div>
             <LaunchStatus status={status}/>
             <FavoriteButton launch={launch}
-                            favoriteLaunchesList={favoriteLaunchesList}/>
+                            favoriteLaunchesList={filteredFavoriteLaunchesList}/>
         </div>
     );
 };

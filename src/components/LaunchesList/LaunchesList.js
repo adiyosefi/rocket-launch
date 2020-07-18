@@ -7,9 +7,8 @@ const LaunchesList = ({ lastLaunchElementRef }) => {
     const {
         launchesList,
         launchesListSearchResults,
-        filteredFavoriteLaunchesList,
         query,
-        favLaunchesFilterChecked,
+        favLaunchesFilterChecked
     } = useContext(LaunchesContext);
 
     const listToUse =
@@ -23,7 +22,7 @@ const LaunchesList = ({ lastLaunchElementRef }) => {
                     lastLaunchElementRef={lastLaunchElementRef}
                 />
                 :
-                <FavoriteLaunchesToShow favoriteLaunchesList={filteredFavoriteLaunchesList}/>
+                <FavoriteLaunchesToShow />
             }
         </div>
     );

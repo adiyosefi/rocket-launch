@@ -20,7 +20,6 @@ const LocationDetails = ({ location }) => {
                     <h3>Location</h3>
                     <div className="location-name">{location.name}</div>
                 </div>
-                {/*  todo && operator */}
                 {location.pads.length !== 0 && (
                     <div className="location-pads">
                         <h4>Pads</h4>

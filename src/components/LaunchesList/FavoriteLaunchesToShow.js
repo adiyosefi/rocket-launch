@@ -1,36 +1,35 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import LaunchItem from "../LaunchItem/LaunchItem";
 import InfiniteScroll from "react-infinite-scroller";
 import Loading from "../common/Loading";
 import "./LaunchesList.scss";
 import NoLaunchesToShow from "./NoLaunchesToShow";
+import {LaunchesContext} from "../../context/launches";
 
-const FavoriteLaunchesToShow = ({ favoriteLaunchesList }) => {
+const FavoriteLaunchesToShow = () => {
+    const { filteredFavoriteLaunchesList } = useContext(LaunchesContext);
     const [pageCountToDisplay, setPageCountToDisplay] = useState(10);
 
-    const [hasMore, setHasMore] = useState(favoriteLaunchesList.length > 10);
+    const [hasMore, setHasMore] = useState(filteredFavoriteLaunchesList.length > 10);
 
     const fetchMoreListItems = (pageToLoad) => {
         const futureCount = (pageToLoad + 1) * 10;
-        if (futureCount <= favoriteLaunchesList.length) {
+        if (futureCount <= filteredFavoriteLaunchesList.length) {
             setPageCountToDisplay(futureCount);
         } else {
-            setPageCountToDisplay(favoriteLaunchesList.length);
+            setPageCountToDisplay(filteredFavoriteLaunchesList.length);
             setHasMore(false);
         }
     }
 
-    const showLaunchesList = favoriteLaunchesList
+    const showLaunchesList = filteredFavoriteLaunchesList
         .slice(0, pageCountToDisplay)
         .map(launch => <li key={launch.id} className={`launch-item launch-item-${launch.id}`}>
-                <LaunchItem
-                    launch={launch}
-                    favoriteLaunchesList={favoriteLaunchesList}
-                />
+                <LaunchItem launch={launch} />
             </li>
         );
 
-    if (!favoriteLaunchesList.length) return <NoLaunchesToShow />;
+    if (!filteredFavoriteLaunchesList.length) return <NoLaunchesToShow />;
 
     return (
         <div className="launches-list-container">

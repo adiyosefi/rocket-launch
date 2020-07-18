@@ -10,12 +10,10 @@ const FavoriteButton = ({ launch, favoriteLaunchesList }) => (
         {checkIfFavorite(launch.id, favoriteLaunchesList) ? (
             <RemoveFromFavoriteButton
                 launch={launch}
-                favoriteLaunchesList={favoriteLaunchesList}
             />
         ) : (
             <AddToFavoriteButton
                 launch={launch}
-                favoriteLaunchesList={favoriteLaunchesList}
             />
         )}
     </div>

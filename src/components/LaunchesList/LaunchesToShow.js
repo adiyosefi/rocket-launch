@@ -6,25 +6,19 @@ import "./LaunchesList.scss";
 import NoLaunchesToShow from "./NoLaunchesToShow";
 
 const LaunchesToShow = ({ lastLaunchElementRef, launchesList }) => {
-    const { loading, favoriteLaunchesList } = useContext(LaunchesContext);
+    const { loading } = useContext(LaunchesContext);
 
     const showLaunchesList = launchesList.map((launch, index) => {
         if (launchesList.length - 1 === index) {
             return (
                 <li ref={lastLaunchElementRef} key={launch.id} className="launch-item">
-                    <LaunchItem
-                        launch={launch}
-                        favoriteLaunchesList={favoriteLaunchesList}
-                    />
+                    <LaunchItem launch={launch} />
                 </li>
             );
         } else {
             return (
                 <li key={launch.id} className="launch-item">
-                    <LaunchItem
-                        launch={launch}
-                        favoriteLaunchesList={favoriteLaunchesList}
-                    />
+                    <LaunchItem launch={launch} />
                 </li>
             );
         }
