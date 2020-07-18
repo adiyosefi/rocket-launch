@@ -1,9 +1,9 @@
 import React from 'react';
 
-const NoLaunchDetailsToShow = ({launchError}) => (
+const LaunchDetailsError = ({launchError}) => (
     <div className="no-launch-content">
         {launchError}
     </div>
 );
 
-export default NoLaunchDetailsToShow;
+export default LaunchDetailsError;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import LaunchDetailsToShow from "./LaunchDetailsToShow";
 import "./LaunchDetails.scss";
-import NoLaunchDetailsToShow from "./NoLaunchDetailsToShow";
+import LaunchDetailsError from "./LaunchDetailsError";
 import { Redirect } from "react-router-dom";
 import Loading from "../common/Loading";
 
@@ -32,7 +32,7 @@ const LaunchDetails = ({ match }) => {
     return (
         <div className="launch-details-container">
             {launch ? <LaunchDetailsToShow launch={launch} /> : !launch ? <Redirect to="/" /> :
-                launchError && <NoLaunchDetailsToShow launchError={launchError}/>
+                launchError && <LaunchDetailsError launchError={launchError}/>
             }
         </div>
     )

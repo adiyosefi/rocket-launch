@@ -1,4 +1,4 @@
-import React, {useContext, useMemo} from "react";
+import React, {useContext} from "react";
 import LaunchesToShow from "./LaunchesToShow";
 import { LaunchesContext } from "../../context/launches";
 import FavoriteLaunchesToShow from "./FavoriteLaunchesToShow";

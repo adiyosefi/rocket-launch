@@ -41,5 +41,4 @@ describe('FavoriteButton', () => {
         const removeFromFavoriteButton = <RemoveFromFavoriteButton launch={testLaunch} favoriteLaunchesList={testFavoriteList} />;
         expect(wrapper).toContainReact(removeFromFavoriteButton);
     });
-
 });

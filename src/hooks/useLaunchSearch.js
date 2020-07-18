@@ -6,19 +6,16 @@ export default function useLaunchSearch(
     pageNumber,
     setPageNumber,
     favLaunchesFilterChecked,
-    favoriteLaunchesList,
-    setFavoriteLaunchesList
+    favoriteLaunchesList
 ) {
     // infinite scrolling in launches list inspired by this code- https://github.com/WebDevSimplified/React-Infinite-Scrolling
     const [loading, setLoading] = useState(true);
     const [errorLaunches, setErrorLaunches] = useState(false);
-    const [errorFavoriteLaunches, setErrorFavoriteLaunches] = useState(false);
     const [launchesList, setLaunchesList] = useState([]);
     const [launchesListSearchResults, setLaunchesListSearchResults] = useState(
         []
     );
     const [hasMore, setHasMore] = useState(false);
-    const [favLaunchesSearchResults, setFavLaunchesSearchResults] = useState([]);
 
     useEffect(() => {
         if (!favLaunchesFilterChecked) {
@@ -26,18 +23,6 @@ export default function useLaunchSearch(
             setLaunchesListSearchResults([])
         }
     }, [query, favLaunchesFilterChecked]);
-
-    useEffect(() => {
-        if (favLaunchesFilterChecked) {
-            setFavLaunchesSearchResults(favLaunchesSearchResults)
-            setFavoriteLaunchesList(favoriteLaunchesList)
-        }
-    }, [
-        favLaunchesFilterChecked,
-        favoriteLaunchesList,
-        setFavoriteLaunchesList,
-        favLaunchesSearchResults
-    ]);
 
     useEffect(() => {
         if (!favLaunchesFilterChecked) {
@@ -82,13 +67,10 @@ export default function useLaunchSearch(
     return {
         loading,
         errorLaunches,
-        errorFavoriteLaunches,
         launchesList,
         setLaunchesList,
         filteredFavoriteLaunchesList,
         launchesListSearchResults,
-        hasMore,
-        favLaunchesSearchResults,
+        hasMore
     };
 };
-

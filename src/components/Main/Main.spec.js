@@ -6,7 +6,7 @@ import {Route} from 'react-router-dom';
 import AppContainer from "../AppContainer/AppContainer";
 import LaunchDetails from "../LaunchDetails/LaunchDetails";
 
-describe('main using memory router', () => {
+describe('Main', () => {
     it('should show AppContainer component for /home router (using memory router)', () => {
         const component = mount(<MemoryRouter initialEntries={['/']}>
                 <Main/>

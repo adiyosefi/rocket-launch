@@ -24,15 +24,13 @@ export const LaunchesProvider = ({ children }) => {
         hasMore,
         loading,
         errorLaunches,
-        errorFavoriteLaunches,
         filteredFavoriteLaunchesList
     } = useLaunchSearch(
         query,
         pageNumber,
         setPageNumber,
         favLaunchesFilterChecked,
-        favoriteLaunchesList,
-        setFavoriteLaunchesList
+        favoriteLaunchesList
     );
 
     return (
@@ -44,7 +42,6 @@ export const LaunchesProvider = ({ children }) => {
                 hasMore,
                 loading,
                 errorLaunches,
-                errorFavoriteLaunches,
                 query,
                 setQuery,
                 pageNumber,

@@ -3,7 +3,8 @@ import moment from "moment";
 import '../LaunchDetails/LaunchDetails.scss';
 
 const LaunchDate = ( { label, date } ) => {
-    const launchFormatDate = moment(date).format(
+    const tempDate = new Date(date);
+    const launchFormatDate = moment(tempDate).format(
         "dddd, MMMM Do YYYY, h:mm:ss a"
     );
 
