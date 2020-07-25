@@ -11,14 +11,14 @@
 </p>
 
 <p align="center">
-<img src="./public/rocket.png" width="30%"></p>
+<img src="./public/rocket.png" width="20%"></p>
 
 <h2 align="center"><a  href="https://rocket-launch.netlify.app">Live Demo</a></h2>
 
 ## Description
 
 <p align="center">
-<img  src="./public/readme_assets/home.png" width="80%">
+<img  src="./public/readme_assets/home.png" width="70%">
 </p>
 
 Rocket Launch is a web app for browsing rockets launches from around the world. 
@@ -33,7 +33,7 @@ The data comes from API calls to launch-library (https://launchlibrary.net/docs/
 - Scroll down the results to find the wanted launch.
 
 <p align="center">
-<img src="https://media.giphy.com/media/dtBTG9Wtt3bU9GJP1n/giphy.gif" width="80%"></p>
+<img src="https://media.giphy.com/media/dtBTG9Wtt3bU9GJP1n/giphy.gif" width="70%"></p>
 
 ### Add launches to your Favorite Launches List
 
@@ -43,7 +43,7 @@ You can find the star icon on the launch item in the launches list, or on the la
 - If you want to remove a launch from your favorites, click on the star icon again. 
 
 <p align="center">
-<img src="https://media.giphy.com/media/YP1uotWn9j7tbuNkZ6/giphy.gif" width="80%"></p>
+<img src="https://media.giphy.com/media/YP1uotWn9j7tbuNkZ6/giphy.gif" width="70%"></p>
 
 ### View launch details
 
@@ -52,7 +52,7 @@ You can find the star icon on the launch item in the launches list, or on the la
 - To go back to All Launches List, click on the "Back to All Launches" button on the left corner of the page.
 
 <p align="center">
-<img  src="./public/readme_assets/launch-details.png" width="80%">
+<img  src="./public/readme_assets/launch-details.png" width="70%">
 </p>
 
 ## Technologies used in the project
@@ -71,35 +71,39 @@ You can find the star icon on the launch item in the launches list, or on the la
 ### Axios
 
 - the project concentrates on the client side.
-- I used Axios library to send asynchronous HTTP requests to a REST endpoint - launch-library API.
+- I used **Axios** library to send asynchronous HTTP requests to a REST endpoint - launch-library API.
 
-# Architecture
+### Jest and Enzyme
 
-## **Main Components**
+- For testing React components.
+
+## Architecture
+
+### **Main Components**
 
 <p align="center">
-<img  src="./public/readme_assets/main-components.png" width="80%">
+<img  src="./public/readme_assets/main-components.png" width="70%">
 </p>
 
 ### Components
-- All of my components (other than the <App /> component) are in the "components" folder. 
-- Each significant component and its children have their own folder (e.g <LaunchesList /> and <FavoriteLaunchesToShow /> are both placed in “src/LaunchesList.js”).
-- Common: common components (that are being used in a few different components).
+- All of my components (other than the `<App />` component) are in the "components" folder. 
+- Each significant component and its children have their own folder (e.g `<LaunchesList />` and `<FavoriteLaunchesToShow />` are both placed in “src/LaunchesList.js”).
+- <ins>Common:</ins> common components (that are being used in a few different components).
 
 ### Hooks
-- useLaunchSearch – A hook that makes the API call in order to receive relevant data according to the user's query/page number. In the useLaunchSearch I added the ability to run the name search on the favorite launches list as well. The hook passes all its' data to the launches context in the "context" folder. 
-- useLocalStorage – A hook that saves favorite launch items easily in the browser's local storage.
+- <ins>useLaunchSearch</ins> – A hook that makes the API call in order to receive relevant data according to the user's query/page number. In the useLaunchSearch I added the ability to run the name search on the favorite launches list as well. The hook passes all its data to the launches context in the "context" folder. 
+- <ins>useLocalStorage</ins> – A hook that saves favorite launch items easily in the browser's local storage.
 
 ### Context
-- launches.js – In this file I'm using <React.Context /> to provide launches details for inner, deeper components of my app. For instance, the <AddToFavoriteButton /> component uses setFavoriteLaunchesList prop, without having to pass it all the way down from the <Main /> component.
+- <ins>launches.js</ins> – In this file I'm using `<React.Context />` to provide launches details for inner, deeper components of my app. For instance, the `<AddToFavoriteButton />` component uses setFavoriteLaunchesList prop, without having to pass it all the way down from the `<Main />` component.
 
 ### Utilities
-- _variables.scss – Scss global variables file.
-- helper_function.js – A file that contains a function that checks if a string is a valid URL.
+- <ins>_variables.scss</ins> – Scss global variables file.
+- <ins>helper_function.js</ins> – A file that contains a function that checks if a string is a valid URL.
 
 ### API calls
-- In useLaunchSearch hook- I use axios to receive the launches list according to the user's query/page number.
-- In <LaunchDetails /> component- An API call to fetch the launch object with the certain id that the user clicked on or wrote in the URL. If a user types something that is not a valid launch id, he'll be routed back to the home page.
+- In useLaunchSearch hook – I use axios to receive the launches list according to the user's query/page number.
+- In `<LaunchDetails />` component – An API call to fetch the launch object with the certain id that the user clicked on or wrote in the URL. If a user types something that is not a valid launch id, he'll be routed back to the home page.
 
 
 # Project setup
