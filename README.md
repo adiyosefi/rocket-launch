@@ -21,7 +21,7 @@
 <img  src="./public/readme_assets/home.png" width="70%">
 </p>
 
-Rocket Launch is a web app for browsing rockets launches from around the world. 
+Rocket Launch is a web app for browsing rocket launches from around the world. 
 The app is a pure client-side app, there is no server side. 
 The data comes from API calls to launch-library (https://launchlibrary.net/docs/1.4/api.html).
 
@@ -34,6 +34,10 @@ The data comes from API calls to launch-library (https://launchlibrary.net/docs/
 
 <p align="center">
 <img src="https://media.giphy.com/media/dtBTG9Wtt3bU9GJP1n/giphy.gif" width="70%"></p>
+
+### Infinite Scrolling
+
+- Load 10 launches each scroll.
 
 ### Add launches to your Favorite Launches List
 
